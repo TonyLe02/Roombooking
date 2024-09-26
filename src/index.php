@@ -21,7 +21,7 @@
         </nav>
     </header>
     <div class="container mx-auto max-w-4xl p-4">
-        <h1 class="text-3xl font-bold text-green-400">Welcome to the Roombooking System</h1>
+        <h1 class="text-3xl font-bold text-green-500">Welcome to the Roombooking System</h1>
         <p class="mt-4">This is a PHP project for creating a room booking system.</p>
     </div>
 </body>
