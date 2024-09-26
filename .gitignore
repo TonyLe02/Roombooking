@@ -14,3 +14,5 @@ Thumbs.db
 # IDE specific files
 .vscode/
 .idea/
+# Tailwind CSS - Build files
+/dist/styles.css
