@@ -1,8 +1,6 @@
 # Node modules
 node_modules/
 
-# Tailwind CSS build output
-dist/
 
 # Logs
 logs/
