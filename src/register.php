@@ -1,15 +1,13 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Roombooking</title>
+    <title>Register</title>
     <link href="/Roombooking/dist/styles.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 text-gray-900">
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -83,17 +81,50 @@ session_start();
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto max-w-4xl p-4">
-        <h1 class="text-3xl font-bold text-gray-500">Welcome to Roombooking</h1>
-        <p class="mt-4 text-lg text-gray-700">
-            Welcome to our room booking system! We offer a variety of rooms to suit your needs, whether you're looking for a single room, a double room, or a junior suite. Our system allows you to easily search for available rooms, register as a guest, and manage your bookings.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-            If you're an administrator, you can manage room types, make rooms unavailable for certain periods, and more. Use the navigation bar above to get started.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-            We hope you have a pleasant experience using our system. If you have any questions or need assistance, please don't hesitate to contact us.
-        </p>
+    <div class="container mx-auto max-w-md p-4">
+        <h1 class="text-3xl font-bold text-gray-500">Register</h1>
+        <form action="register.php" method="POST" class="mt-4">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="username" id="username" class="mt-1 block w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" class="mt-1 block w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                <select name="role" id="role" class="mt-1 block w-full" required>
+                    <option value="guest">Guest</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Register</button>
+        </form>
+
+        <?php
+        // Handle form submission
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            require '../config.php'; // Database connection
+
+            $username = $_POST['username'];
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $role = $_POST['role'];
+
+            $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $password, $role);
+
+            if ($stmt->execute()) {
+                echo "<p class='text-green-500 text-center mt-4'>Registration successful!</p>";
+            } else {
+                echo "<p class='text-red-500 text-center mt-4'>Error: " . $stmt->error . "</p>";
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
+        ?>
     </div>
 </body>
+
 </html>

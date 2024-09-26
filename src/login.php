@@ -1,15 +1,13 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Roombooking</title>
+    <title>Login</title>
     <link href="/Roombooking/dist/styles.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100 text-gray-900">
     <!-- Navbar -->
     <nav class="bg-gray-800">
@@ -83,17 +81,66 @@ session_start();
     </nav>
 
     <!-- Main Content -->
-    <div class="container mx-auto max-w-4xl p-4">
-        <h1 class="text-3xl font-bold text-gray-500">Welcome to Roombooking</h1>
-        <p class="mt-4 text-lg text-gray-700">
-            Welcome to our room booking system! We offer a variety of rooms to suit your needs, whether you're looking for a single room, a double room, or a junior suite. Our system allows you to easily search for available rooms, register as a guest, and manage your bookings.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-            If you're an administrator, you can manage room types, make rooms unavailable for certain periods, and more. Use the navigation bar above to get started.
-        </p>
-        <p class="mt-4 text-lg text-gray-700">
-            We hope you have a pleasant experience using our system. If you have any questions or need assistance, please don't hesitate to contact us.
-        </p>
+    <div class="container mx-auto max-w-md p-4">
+        <h1 class="text-3xl font-bold text-gray-500">Login</h1>
+        <form action="login.php" method="POST" class="mt-4">
+            <div class="mb-4">
+                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" name="username" id="username" class="mt-1 block w-full" required>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" name="password" id="password" class="mt-1 block w-full" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Login</button>
+        </form>
+
+        <?php
+        // Handle form submission
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            require '../config.php'; // Database connection
+
+            // Set UTF-8 encoding
+            $conn->set_charset("utf8");
+
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+
+            $stmt = $conn->prepare("SELECT id, password, role FROM users WHERE username = ?");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if ($stmt->num_rows > 0) {
+                $stmt->bind_result($id, $hashed_password, $role);
+                $stmt->fetch();
+
+                if (password_verify($password, $hashed_password)) {
+                    // Start session and set session variables
+                    session_start();
+                    $_SESSION['user_id'] = $id;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['role'] = $role;
+
+                    // Redirect based on role
+                    if ($role == 'admin') {
+                        header("Location: /Roombooking/src/admin.php");
+                    } else {
+                        header("Location: /Roombooking/src/search.php");
+                    }
+                    exit();
+                } else {
+                    echo "<p class='text-red-500 text-center mt-4'>Invalid password.</p>";
+                }
+            } else {
+                echo "<p class='text-red-500 text-center mt-4'>No user found with that username.</p>";
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
+        ?>
     </div>
 </body>
+
 </html>
