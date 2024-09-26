@@ -545,14 +545,23 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
+.mt-8 {
+  margin-top: 2rem;
+}
 .block {
   display: block;
 }
 .flex {
   display: flex;
 }
+.table {
+  display: table;
+}
 .w-full {
   width: 100%;
+}
+.min-w-full {
+  min-width: 100%;
 }
 .max-w-4xl {
   max-width: 56rem;
@@ -576,6 +585,9 @@ video {
 }
 .rounded {
   border-radius: 0.25rem;
+}
+.border {
+  border-width: 1px;
 }
 .bg-gray-100 {
   --tw-bg-opacity: 1;
@@ -618,6 +630,10 @@ video {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 .font-bold {
   font-weight: 700;
