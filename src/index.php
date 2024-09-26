@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roombooking</title>
-    <link href="../dist/styles.css" rel="stylesheet">
+    <link href="/Roombooking/dist/styles.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100 text-gray-900">
