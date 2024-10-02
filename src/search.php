@@ -1,9 +1,14 @@
 <?php
 session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+$showToast = isset($_SESSION['logged_success']) && $_SESSION['logged_success'];
+
 if (!isset($_SESSION['username'])) {
     header("Location: /Roombooking/src/login.php");
     exit();
 }
+unset($_SESSION['logged_success']);
+
 ?>
 
 <!DOCTYPE html>
@@ -14,34 +19,78 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Rooms</title>
     <link href="/Roombooking/dist/styles.css" rel="stylesheet">
+
     <script>
-        <!-- Mobile menu toggle 
-        -->
-        document.addEventListener('DOMContentLoaded',
-        function
-        ()
-        {
-        const
-        mobileMenuButton
-        =
-        document.getElementById('mobile-menu-button');
-        const
-        mobileMenu
-        =
-        document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click',
-        function
-        ()
-        {
-        mobileMenu.classList.toggle('hidden');
+        // Dropdown menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('user-menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            // Toggle dropdown on button click
+            menuButton.addEventListener('click', function(event) {
+                // Prevent default button behavior (if any)
+                event.preventDefault();
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
         });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded',
+            function() {
+                const
+                    mobileMenuButton =
+                    document.getElementById('mobile-menu-button');
+                const
+                    mobileMenu =
+                    document.getElementById('mobile-menu');
+                mobileMenuButton.addEventListener('click',
+                    function() {
+                        mobileMenu.classList.toggle('hidden');
+                    });
+            });
+
+        // Toast message
+        document.addEventListener('DOMContentLoaded', function() {
+            const showToast = <?php echo json_encode($showToast); ?>;
+            if (showToast) {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3500);
+            }
         });
     </script>
+
 </head>
 
 <body class="bg-gray-100 text-gray-900">
+
     <!-- Navbar -->
     <nav class="bg-gray-800">
+        <!-- Toast -->
+        <div id="toast" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-lg hidden max-w-xs w-full mb-4" role="alert" tabindex="-1" aria-labelledby="hs-toast-success-example-label">
+            <div class="flex p-4">
+                <div class="flex-shrink-0">
+                    <svg class="w-6 h-6 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="#14b8a6" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+                    </svg>
+                </div>
+                <div class="ml-3">
+                    <p id="hs-toast-success-example-label" class="text-sm text-gray-700">
+                        You logged in successfully and were redirected to search rooms.
+                    </p>
+                </div>
+            </div>
+        </div>
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -64,14 +113,19 @@ if (!isset($_SESSION['username'])) {
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <a href="/Roombooking/src/index.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                            <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-                            <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+                            <?php if ($_SESSION['role'] != 'admin' && $_SESSION['role'] != 'guest') : ?>
+                                <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                                <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+                            <?php endif; ?>
                             <a href="/Roombooking/src/search.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Search Rooms</a>
-                            <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                            <?php if ($_SESSION['role'] == 'admin') : ?>
+                                <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <span class="mr-4 text-sm text-gray-300"><?php echo htmlspecialchars($username); ?></span>
                     <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View notifications</span>
@@ -83,10 +137,12 @@ if (!isset($_SESSION['username'])) {
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
                         <div>
-                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <svg class="h-8 w-8 rounded-full" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
                             </button>
                         </div>
 
@@ -99,19 +155,19 @@ if (!isset($_SESSION['username'])) {
                             </form>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="hidden sm:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pb-3 pt-2">
-                <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-                <a href="/Roombooking/src/login.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-                <a href="/Roombooking/src/search.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Search Rooms</a>
-                <a href="/Roombooking/src/admin.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+            <!-- Mobile menu, show/hide based on menu state. -->
+            <div class="hidden sm:hidden" id="mobile-menu">
+                <div class="space-y-1 px-2 pb-3 pt-2">
+                    <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+                    <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                    <a href="/Roombooking/src/login.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+                    <a href="/Roombooking/src/search.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Search Rooms</a>
+                    <a href="/Roombooking/src/admin.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                </div>
             </div>
-        </div>
     </nav>
 
     <!-- Main Content -->
@@ -179,27 +235,10 @@ if (!isset($_SESSION['username'])) {
         }
         ?>
     </div>
-    <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.getElementById('user-menu-button');
-    const dropdownMenu = document.getElementById('dropdown-menu');
 
-    // Toggle dropdown on button click
-    menuButton.addEventListener('click', function(event) {
-      // Prevent default button behavior (if any)
-      event.preventDefault();
-      dropdownMenu.classList.toggle('hidden');
-    });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
-      if (!isClickInside) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  });
-</script>
+
 </body>
+
 
 </html>
