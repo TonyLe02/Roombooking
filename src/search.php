@@ -35,15 +35,15 @@ if (!isset($_SESSION['username'])) {
                     </button>
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex flex-shrink-0 items-center">
+                    <!-- <div class="flex flex-shrink-0 items-center">
                         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Roombooking">
-                    </div>
+                    </div> -->
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="/Roombooking/src/index.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                            <a href="/Roombooking/src/index.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
                             <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
                             <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
-                            <a href="/Roombooking/src/search.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
+                            <a href="/Roombooking/src/search.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Search Rooms</a>
                             <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['username'])) {
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div class="relative ml-3">
+                    <!-- <div class="relative ml-3">
                         <div>
                             <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
@@ -71,7 +71,7 @@ if (!isset($_SESSION['username'])) {
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
