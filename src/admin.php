@@ -4,6 +4,8 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     header("Location: /Roombooking/src/login.php");
     exit();
 }
+$username = $_SESSION['username'];
+
 ?>
 
 <!DOCTYPE html>
@@ -64,14 +66,13 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <a href="/Roombooking/src/index.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                            <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-                            <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
                             <a href="/Roombooking/src/search.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
                             <a href="/Roombooking/src/admin.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Admin Dashboard</a>
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <span class="mr-4 text-sm text-gray-300"><?php echo htmlspecialchars($username); ?></span>
                     <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View notifications</span>
@@ -83,10 +84,12 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
                         <div>
-                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <svg class="h-8 w-8 rounded-full" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                                </svg>
                             </button>
                         </div>
 
@@ -263,27 +266,27 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
     }
     ?>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.getElementById('user-menu-button');
-    const dropdownMenu = document.getElementById('dropdown-menu');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('user-menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
 
-    // Toggle dropdown on button click
-    menuButton.addEventListener('click', function(event) {
-      // Prevent default button behavior (if any)
-      event.preventDefault();
-      dropdownMenu.classList.toggle('hidden');
-    });
+            // Toggle dropdown on button click
+            menuButton.addEventListener('click', function(event) {
+                // Prevent default button behavior (if any)
+                event.preventDefault();
+                dropdownMenu.classList.toggle('hidden');
+            });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
-      if (!isClickInside) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  });
-</script>
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
