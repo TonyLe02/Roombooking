@@ -1,3 +1,50 @@
+<?php
+session_start();
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    require '../config.php'; // Database connection
+
+    // Set UTF-8 encoding
+    $conn->set_charset("utf8");
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT id, password, role FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($id, $hashed_password, $role);
+        $stmt->fetch();
+
+        if (password_verify($password, $hashed_password)) {
+            // Start session and set session variables
+            session_start();
+            $_SESSION['user_id'] = $id;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $role;
+
+            // Redirect based on role
+            if ($role == 'admin') {
+                header("Location: /Roombooking/src/admin.php");
+            } else {
+                header("Location: /Roombooking/src/search.php");
+            }
+            exit();
+        } else {
+            echo "<p class='text-red-500 text-center mt-4'>Invalid password.</p>";
+        }
+    } else {
+        echo "<p class='text-red-500 text-center mt-4'>No user found with that username.</p>";
+    }
+
+    $stmt->close();
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,14 +74,14 @@
                     </button>
                 </div>
                 <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex flex-shrink-0 items-center">
+                    <!-- <div class="flex flex-shrink-0 items-center">
                         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Roombooking">
-                    </div>
+                    </div> -->
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
-                            <a href="/Roombooking/src/index.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                            <a href="/Roombooking/src/index.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
                             <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-                            <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+                            <a href="/Roombooking/src/login.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Login</a>
                             <a href="/Roombooking/src/search.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
                             <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
                         </div>
@@ -50,7 +97,7 @@
                     </button>
 
                     <!-- Profile dropdown -->
-                    <div class="relative ml-3">
+                    <!-- <div class="relative ml-3">
                         <div>
                             <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="absolute -inset-1.5"></span>
@@ -63,7 +110,7 @@
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                             <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -95,51 +142,7 @@
             <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Login</button>
         </form>
 
-        <?php
-        // Handle form submission
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            require '../config.php'; // Database connection
 
-            // Set UTF-8 encoding
-            $conn->set_charset("utf8");
-
-            $username = $_POST['username'];
-            $password = $_POST['password'];
-
-            $stmt = $conn->prepare("SELECT id, password, role FROM users WHERE username = ?");
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $stmt->store_result();
-
-            if ($stmt->num_rows > 0) {
-                $stmt->bind_result($id, $hashed_password, $role);
-                $stmt->fetch();
-
-                if (password_verify($password, $hashed_password)) {
-                    // Start session and set session variables
-                    session_start();
-                    $_SESSION['user_id'] = $id;
-                    $_SESSION['username'] = $username;
-                    $_SESSION['role'] = $role;
-
-                    // Redirect based on role
-                    if ($role == 'admin') {
-                        header("Location: /Roombooking/src/admin.php");
-                    } else {
-                        header("Location: /Roombooking/src/search.php");
-                    }
-                    exit();
-                } else {
-                    echo "<p class='text-red-500 text-center mt-4'>Invalid password.</p>";
-                }
-            } else {
-                echo "<p class='text-red-500 text-center mt-4'>No user found with that username.</p>";
-            }
-
-            $stmt->close();
-            $conn->close();
-        }
-        ?>
     </div>
 </body>
 
