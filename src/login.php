@@ -139,7 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
+        <div class="hidden sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
                 <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Main Content -->
     <div class="container mx-auto max-w-md p-4">
-        <h1 class="text-3xl font-bold text-gray-500">Login</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Login</h1>
         <form action="login.php" method="POST" class="mt-4">
             <div class="mb-4">
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>

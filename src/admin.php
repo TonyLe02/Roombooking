@@ -100,7 +100,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
+        <div class="hidden sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
                 <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
 
     <!-- Main Content -->
     <div class="container mx-auto max-w-4xl p-4">
-        <h1 class="text-3xl font-bold text-gray-500">Admin Dashboard</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
 
         <!-- Add Room Type Form -->
         <div class="mt-8">

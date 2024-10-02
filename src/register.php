@@ -56,7 +56,7 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <a href="/Roombooking/src/index.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                            <a href="/Roombooking/src/register.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-current="page">Register</a>
+                            <a href="/Roombooking/src/register.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Register</a>
                             <a href="/Roombooking/src/login.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
                             <a href="/Roombooking/src/search.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
                             <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
@@ -92,11 +92,11 @@
         </div>
 
         <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="sm:hidden" id="mobile-menu">
+        <div class="hidden sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
                 <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                <a href="/Roombooking/src/register.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Register</a>
-                <a href="/Roombooking/src/login.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
+                <a href="/Roombooking/src/register.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page"">Register</a>
+                <a href=" /Roombooking/src/login.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
                 <a href="/Roombooking/src/search.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
                 <a href="/Roombooking/src/admin.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
             </div>
@@ -105,7 +105,7 @@
 
     <!-- Main Content -->
     <div class="container mx-auto max-w-md p-4">
-        <h1 class="text-3xl font-bold text-gray-500">Register</h1>
+        <h1 class="text-3xl font-bold text-gray-900">Register</h1>
         <form action="register.php" method="POST" class="mt-4">
             <div class="mb-4">
                 <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
