@@ -212,32 +212,43 @@ unset($_SESSION['logged_success']);
         // Check if there are results
         if ($result->num_rows > 0) {
             // Start the Tailwind CSS styled table
-            echo "<table class='min-w-full bg-white border border-gray-300'>
-                <thead>
-                    <tr class='bg-gray-200'>
-                        <th class='py-2 px-4 border-b'>Room Number</th>
-                        <th class='py-2 px-4 border-b'>Room Type</th>
-                        <th class='py-2 px-4 border-b'>Available</th>
-                        <th class='py-2 px-4 border-b'>Floor</th>
-                        <th class='py-2 px-4 border-b'>Proximity to Elevator</th>
-                    </tr>
-                </thead>
-                <tbody>";
+            echo "<div class='overflow-x-auto'>
+                <table class='min-w-full bg-white border border-gray-300 shadow-md rounded-lg'>
+                    <thead class='bg-gray-200 text-gray-700'>
+                        <tr>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Room Number</th>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Room Type</th>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Available</th>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Floor</th>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Proximity to Elevator</th>
+                            <th class='py-3 px-4 border-b-2 border-gray-300 text-left text-sm font-semibold'>Action</th>
+
+                            
+                        </tr>
+                    </thead>
+                    <tbody>";
 
             // Output data for each row
             while ($row = $result->fetch_assoc()) {
                 echo "<tr class='hover:bg-gray-100'>
-                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['room_number']) . "</td>
-                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['room_type']) . "</td>
-                    <td class='py-2 px-4 border-b'>" . ($row['available'] ? 'Yes' : 'No') . "</td>
-                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['floor']) . "</td>
-                    <td class='py-2 px-4 border-b'>" . ($row['proximity_to_elevator'] ? 'Yes' : 'No') . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>" . htmlspecialchars($row['room_number']) . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>" . htmlspecialchars($row['room_type']) . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>" . ($row['available'] ? 'Yes' : 'No') . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>" . htmlspecialchars($row['floor']) . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>" . ($row['proximity_to_elevator'] ? 'Yes' : 'No') . "</td>
+                    <td class='py-3 px-4 border-b border-gray-300'>";
+                if ($row['available']) {
+                    echo "<a href='booking.php?room_id=" . htmlspecialchars($row['id']) . "' class='bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700'>Book</a>";
+                } else {
+                    echo "<span class='text-red-500'>Occupied</span>";
+                }
+                echo "</td>
                   </tr>";
             }
             // End the table
-            echo "</tbody></table>";
+            echo "</tbody></table></div>";
         } else {
-            echo "<p class='text-red-500'>No rooms found.</p>";
+            echo "<p class='text-red-500'>No rooms found matching your search.</p>";
         }
 
         // End the HTML output
@@ -254,11 +265,7 @@ unset($_SESSION['logged_success']);
         }
     }
     ?>
-
-
-
-
+    <!-- Include Footer -->
+    <?php include 'footer.php'; ?>
 </body>
-
-
 </html>
