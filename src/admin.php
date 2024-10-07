@@ -287,6 +287,8 @@ $username = $_SESSION['username'];
             });
         });
     </script>
+    <!-- Include Footer -->
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>

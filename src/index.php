@@ -168,6 +168,8 @@ if (isset($_POST['logout'])) {
             });
         });
     </script>
+    <!-- Include Footer -->
+    <?php include 'footer.php'; ?>
 </body>
 
 </html>
