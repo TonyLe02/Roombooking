@@ -194,35 +194,51 @@ unset($_SESSION['logged_success']);
         </form>
 
         <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['check_in'])) {
-            require '../config.php'; // Database connection
+        // search.php
+        session_start();
+        require '../config.php'; // Include your database connection
 
+        $username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+        if (!isset($_SESSION['username'])) {
+            header("Location: /Roombooking/src/login.php");
+            exit();
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['check_in'])) {
             $check_in = $_GET['check_in'];
             $check_out = $_GET['check_out'];
-            $adults = $_GET['adults'];
-            $children = $_GET['children'];
+            $adults = intval($_GET['adults']);
+            $children = intval($_GET['children']);
 
-            $stmt = $conn->prepare("SELECT rooms.room_number, room_types.name, room_types.description 
-                                    FROM rooms 
-                                    JOIN room_types ON rooms.type_id = room_types.id 
-                                    WHERE rooms.id NOT IN (
-                                        SELECT room_id FROM bookings 
-                                        WHERE (check_in <= ? AND check_out >= ?) 
-                                        OR (check_in <= ? AND check_out >= ?)
-                                    ) 
-                                    AND room_types.max_adults >= ? 
-                                    AND room_types.max_children >= ?");
+            // Prepare SQL query to retrieve available rooms
+            $query = "
+        SELECT rooms.room_number, room_types.name, room_types.description, room_types.price
+        FROM rooms
+        JOIN room_types ON rooms.type_id = room_types.id
+        WHERE rooms.id NOT IN (
+            SELECT room_id FROM bookings 
+            WHERE (check_in <= ? AND check_out >= ?) 
+            OR (check_in <= ? AND check_out >= ?)
+        )
+        AND room_types.max_adults >= ? 
+        AND room_types.max_children >= ?
+    ";
+
+            $stmt = $conn->prepare($query);
             $stmt->bind_param("ssssii", $check_in, $check_in, $check_out, $check_out, $adults, $children);
             $stmt->execute();
             $result = $stmt->get_result();
 
+            // Check if any rooms are available
             if ($result->num_rows > 0) {
                 echo "<div class='mt-4'>";
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='p-4 bg-white shadow mb-4'>";
-                    echo "<h2 class='text-xl font-bold'>" . $row['name'] . "</h2>";
-                    echo "<p>" . $row['description'] . "</p>";
-                    echo "<p>Room Number: " . $row['room_number'] . "</p>";
+                    echo "<h2 class='text-xl font-bold'>" . htmlspecialchars($row['name']) . "</h2>";
+                    echo "<p>" . htmlspecialchars($row['description']) . "</p>";
+                    echo "<p>Room Number: " . htmlspecialchars($row['room_number']) . "</p>";
+                    echo "<p>Price: $" . htmlspecialchars($row['price']) . "</p>";
                     echo "</div>";
                 }
                 echo "</div>";
@@ -234,6 +250,7 @@ unset($_SESSION['logged_success']);
             $conn->close();
         }
         ?>
+
     </div>
 
 
