@@ -170,71 +170,91 @@ unset($_SESSION['logged_success']);
             </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container mx-auto max-w-md p-4">
-        <h1 class="text-3xl font-bold text-gray-900">Search Rooms</h1>
-        <form action="search.php" method="GET" class="mt-4">
-            <div class="mb-4">
-                <label for="check_in" class="block text-sm font-medium text-gray-700">Check-in Date</label>
-                <input type="date" name="check_in" id="check_in" class="mt-1 block w-full" required>
-            </div>
-            <div class="mb-4">
-                <label for="check_out" class="block text-sm font-medium text-gray-700">Check-out Date</label>
-                <input type="date" name="check_out" id="check_out" class="mt-1 block w-full" required>
-            </div>
-            <div class="mb-4">
-                <label for="adults" class="block text-sm font-medium text-gray-700">Adults</label>
-                <input type="number" name="adults" id="adults" class="mt-1 block w-full" required>
-            </div>
-            <div class="mb-4">
-                <label for="children" class="block text-sm font-medium text-gray-700">Children</label>
-                <input type="number" name="children" id="children" class="mt-1 block w-full" required>
-            </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Search</button>
-        </form>
+    <!-- Main content -->
+    <?php
+    $servername = "localhost";
+    $username = "root"; // Default XAMPP MySQL username
+    $password = ""; // Default XAMPP MySQL password
+    $dbname = "roombooking";
 
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['check_in'])) {
-            require '../config.php'; // Database connection
+    // Enable error reporting
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-            $check_in = $_GET['check_in'];
-            $check_out = $_GET['check_out'];
-            $adults = $_GET['adults'];
-            $children = $_GET['children'];
+    try {
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-            $stmt = $conn->prepare("SELECT rooms.room_number, room_types.name, room_types.description 
-                                    FROM rooms 
-                                    JOIN room_types ON rooms.type_id = room_types.id 
-                                    WHERE rooms.id NOT IN (
-                                        SELECT room_id FROM bookings 
-                                        WHERE (check_in <= ? AND check_out >= ?) 
-                                        OR (check_in <= ? AND check_out >= ?)
-                                    ) 
-                                    AND room_types.max_adults >= ? 
-                                    AND room_types.max_children >= ?");
-            $stmt->bind_param("ssssii", $check_in, $check_in, $check_out, $check_out, $adults, $children);
-            $stmt->execute();
-            $result = $stmt->get_result();
+        // Check connection
+        if ($conn->connect_error) {
+            throw new Exception("Connection failed: " . $conn->connect_error);
+        }
 
-            if ($result->num_rows > 0) {
-                echo "<div class='mt-4'>";
-                while ($row = $result->fetch_assoc()) {
-                    echo "<div class='p-4 bg-white shadow mb-4'>";
-                    echo "<h2 class='text-xl font-bold'>" . $row['name'] . "</h2>";
-                    echo "<p>" . $row['description'] . "</p>";
-                    echo "<p>Room Number: " . $row['room_number'] . "</p>";
-                    echo "</div>";
-                }
-                echo "</div>";
-            } else {
-                echo "<p class='text-red-500 text-center mt-4'>No rooms available for the selected dates.</p>";
+        // Query to fetch room details along with room type
+        $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator
+            FROM rooms r
+            JOIN room_types rt ON r.type_id = rt.id";
+
+        $result = $conn->query($sql);
+
+        // Start the HTML output
+        echo "<!DOCTYPE html>
+    <html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Room Booking</title>
+        <link href='https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css' rel='stylesheet'>
+    </head>
+    <body class='bg-gray-100'>
+        <div class='container mx-auto mt-10'>
+            <h1 class='text-2xl font-bold mb-5'>Available Rooms</h1>";
+
+        // Check if there are results
+        if ($result->num_rows > 0) {
+            // Start the Tailwind CSS styled table
+            echo "<table class='min-w-full bg-white border border-gray-300'>
+                <thead>
+                    <tr class='bg-gray-200'>
+                        <th class='py-2 px-4 border-b'>Room Number</th>
+                        <th class='py-2 px-4 border-b'>Room Type</th>
+                        <th class='py-2 px-4 border-b'>Available</th>
+                        <th class='py-2 px-4 border-b'>Floor</th>
+                        <th class='py-2 px-4 border-b'>Proximity to Elevator</th>
+                    </tr>
+                </thead>
+                <tbody>";
+
+            // Output data for each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr class='hover:bg-gray-100'>
+                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['room_number']) . "</td>
+                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['room_type']) . "</td>
+                    <td class='py-2 px-4 border-b'>" . ($row['available'] ? 'Yes' : 'No') . "</td>
+                    <td class='py-2 px-4 border-b'>" . htmlspecialchars($row['floor']) . "</td>
+                    <td class='py-2 px-4 border-b'>" . ($row['proximity_to_elevator'] ? 'Yes' : 'No') . "</td>
+                  </tr>";
             }
+            // End the table
+            echo "</tbody></table>";
+        } else {
+            echo "<p class='text-red-500'>No rooms found.</p>";
+        }
 
-            $stmt->close();
+        // End the HTML output
+        echo "</div>
+    </body>
+    </html>";
+    } catch (Exception $e) {
+        // Handle connection error
+        echo "Error: " . $e->getMessage();
+    } finally {
+        // Close connection
+        if (isset($conn) && $conn->ping()) {
             $conn->close();
         }
-        ?>
-    </div>
+    }
+    ?>
+
 
 
 

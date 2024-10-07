@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Redirect based on role
             if ($role == 'admin') {
-                header("Location: /Roombooking/src/admin.php");
+                header("Location: /Roombooking/src/search.php");
             } else {
                 header("Location: /Roombooking/src/search.php");
             }
@@ -107,7 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a href="/Roombooking/src/register.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
                             <a href="/Roombooking/src/login.php" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Login</a>
                             <a href="/Roombooking/src/search.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
-                            <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                            <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
+                                <a href="/Roombooking/src/admin.php" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -143,16 +145,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
-        <div class="hidden sm:hidden" id="mobile-menu">
-            <div class="space-y-1 px-2 pb-3 pt-2">
-                <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
-                <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
-                <a href="/Roombooking/src/login.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Login</a>
-                <a href="/Roombooking/src/search.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
-                <a href="/Roombooking/src/admin.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+            <!-- Mobile menu, show/hide based on menu state. -->
+            <div class="hidden sm:hidden" id="mobile-menu">
+                <div class="space-y-1 px-2 pb-3 pt-2">
+                    <a href="/Roombooking/src/index.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Home</a>
+                    <a href="/Roombooking/src/register.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                    <a href="/Roombooking/src/login.php" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Login</a>
+                    <a href="/Roombooking/src/search.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Search Rooms</a>
+                    <a href="/Roombooking/src/admin.php" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Admin Dashboard</a>
+                </div>
             </div>
-        </div>
     </nav>
 
     <!-- Main Content -->
@@ -173,26 +175,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     </div>
     <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.getElementById('user-menu-button');
-    const dropdownMenu = document.getElementById('dropdown-menu');
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('user-menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
 
-    // Toggle dropdown on button click
-    menuButton.addEventListener('click', function(event) {
-      // Prevent default button behavior (if any)
-      event.preventDefault();
-      dropdownMenu.classList.toggle('hidden');
-    });
+            // Toggle dropdown on button click
+            menuButton.addEventListener('click', function(event) {
+                // Prevent default button behavior (if any)
+                event.preventDefault();
+                dropdownMenu.classList.toggle('hidden');
+            });
 
-    // Close dropdown if clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
-      if (!isClickInside) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
-  });
-</script>
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
