@@ -54,6 +54,14 @@ if (!$booking) {
             <p><strong>Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
             <p><strong>Status:</strong> <?php echo htmlspecialchars($booking['status']); ?></p>
         </div>
+    
+    <!-- Return Button -->
+    <div class="mt-6">
+            <a href="search.php" class="inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600">
+                Return to Search
+            </a>
+        </div>
     </div>
+
 </body>
 </html>
