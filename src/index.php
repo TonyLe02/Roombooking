@@ -130,27 +130,6 @@ if (isset($_POST['logout'])) {
             We hope you have a pleasant experience using our system. If you have any questions or need assistance, please don't hesitate to contact us.
         </p>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuButton = document.getElementById('user-menu-button');
-            const dropdownMenu = document.getElementById('dropdown-menu');
-
-            // Toggle dropdown on button click
-            menuButton.addEventListener('click', function(event) {
-                // Prevent default button behavior (if any)
-                event.preventDefault();
-                dropdownMenu.classList.toggle('hidden');
-            });
-
-            // Close dropdown if clicking outside
-            document.addEventListener('click', function(event) {
-                const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
-                if (!isClickInside) {
-                    dropdownMenu.classList.add('hidden');
-                }
-            });
-        });
-    </script>
     <!-- Include Footer -->
     <?php include 'footer.php'; ?>
 </body>

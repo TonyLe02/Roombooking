@@ -19,3 +19,26 @@
         </form>
     </div>
 </div>
+
+    <!-- Script for dropdown menu -->
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.getElementById('user-menu-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            // Toggle dropdown on button click
+            menuButton.addEventListener('click', function(event) {
+                // Prevent default button behavior (if any)
+                event.preventDefault();
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Close dropdown if clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = menuButton.contains(event.target) || dropdownMenu.contains(event.target);
+                if (!isClickInside) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
