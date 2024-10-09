@@ -51,62 +51,13 @@ $check_out = new DateTime($booking['check_out']);
         <h1 class="text-3xl font-bold mb-5 text-center text-green-700">Booking Confirmation</h1>
         <p class="mb-5 text-center text-gray-600">Thank you for your booking! Here are your booking details:</p>
 
-        <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="mb-4 border-b pb-2">
-                <h2 class="text-xl font-semibold text-gray-800">Booking Details</h2>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Room Number:</strong> <?php echo htmlspecialchars($booking['room_number']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Room Type:</strong> <?php echo htmlspecialchars($booking['room_type']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Check-in Date:</strong> <?php echo htmlspecialchars($booking['check_in']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Check-out Date:</strong> <?php echo htmlspecialchars($booking['check_out']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Adults:</strong> <?php echo htmlspecialchars($booking['adults']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
-                    </svg>
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($booking['status']); ?></p>
-                </div>
-            </div>
-        </div>
         <?php
         $currentMonth = new DateTime();
         $formattedMonth = $currentMonth->format('F Y'); // Format as "Month Year" (e.g., "October 2023")
         ?>
 
         <!-- Calendar View -->
-        <div class="bg-white p-6 rounded-lg shadow-md mt-6">
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
             <h2 class="text-xl font-semibold mb-4 text-gray-800 text-center"> <?php echo $formattedMonth; ?></h2>
             <div class="grid grid-cols-7 gap-1">
                 <?php
@@ -158,6 +109,57 @@ $check_out = new DateTime($booking['check_out']);
                 ?>
             </div>
         </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4 border-b pb-2">
+                <h2 class="text-xl font-semibold text-gray-800">Booking Details</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Room Number:</strong> <?php echo htmlspecialchars($booking['room_number']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Room Type:</strong> <?php echo htmlspecialchars($booking['room_type']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Check-in Date:</strong> <?php echo htmlspecialchars($booking['check_in']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Check-out Date:</strong> <?php echo htmlspecialchars($booking['check_out']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Adults:</strong> <?php echo htmlspecialchars($booking['adults']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
+                </div>
+                <div class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.75V21m0 0l5.25-5.25M12 21l-5.25-5.25" />
+                    </svg>
+                    <p><strong>Status:</strong> <?php echo htmlspecialchars($booking['status']); ?></p>
+                </div>
+            </div>
+        </div>
+        
 
         <!-- Return Button -->
         <div class="mt-6 text-center">
