@@ -41,7 +41,7 @@ if (!$room) {
 
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10">
-        <h1 class="text-3xl font-bold mb-4 text-center text-blue-600">Book Room: <?php echo htmlspecialchars($room['room_number']); ?></h1>
+        <h1 class="text-3xl font-bold mb-4 text-center text-green-600">Book Room: <?php echo htmlspecialchars($room['room_number']); ?></h1>
         <p class="text-lg text-center mb-5">Room Type: <?php echo htmlspecialchars($room['room_type']); ?></p>
 
         <form method="POST" action="process_booking.php" class="bg-white p-8 rounded-lg shadow-md max-w-lg mx-auto">
@@ -67,7 +67,7 @@ if (!$room) {
 
             <button type="submit" class="mt-4 w-full rounded-md bg-green-600 px-4 py-2 text-white font-semibold hover:bg-green-700 transition duration-300">Proceed to Payment</button>
         </form>
-
+        <!-- Return to Booking button -->
         <div class="mt-6 text-center">
             <a href="search.php" class="inline-block rounded-md bg-gray-600 px-4 py-2 text-white hover:bg-gray-700 transition duration-300">Return to Booking</a>
         </div>
