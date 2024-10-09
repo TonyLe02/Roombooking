@@ -68,10 +68,7 @@ unset($_SESSION['logged_success']);
     <!-- Sticky Navbar -->
     <?php include 'navbar_search.php'; ?>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="hidden fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
-        Successfully logged in!
-    </div>
+    <?php include 'success_toast.php'; ?>
 
     <!-- Main content -->
     <div class="container mx-auto mt-10 p-5 bg-white shadow-md rounded-lg">
