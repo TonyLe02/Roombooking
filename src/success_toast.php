@@ -1,5 +1,5 @@
 <!-- Toast -->
-<div id="toast" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-lg hidden max-w-xs w-full mb-4" role="alert" tabindex="-1" aria-labelledby="hs-toast-success-example-label">
+<div id="toast" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-lg hidden max-w-xs w-full mb-4 z-50" role="alert" tabindex="-1" aria-labelledby="hs-toast-success-example-label">
     <div class="flex p-4">
         <div class="flex-shrink-0">
             <svg class="w-6 h-6 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="#14b8a6" viewBox="0 0 16 16">
