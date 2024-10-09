@@ -30,12 +30,14 @@ if (!$room) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Room</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-5">Book Room: <?php echo htmlspecialchars($room['room_number']); ?></h1>
@@ -64,9 +66,12 @@ if (!$room) {
 
             <button type="submit" class="mt-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Proceed to Payment</button>
             <br>
-            <button href="search.php" class="mt-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Return  to  booking</button>
-            
+
         </form>
+        <div class="mt-4"><a href="search.php" class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Return to booking</a> </div>
     </div>
+    <!-- Include Footer -->
+    <?php include 'footer.php'; ?>
 </body>
+
 </html>

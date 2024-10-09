@@ -76,21 +76,7 @@ unset($_SESSION['logged_success']);
 
     <!-- Navbar -->
     <nav class="bg-gray-800">
-        <!-- Toast -->
-        <div id="toast" class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border border-gray-200 rounded-xl shadow-lg hidden max-w-xs w-full mb-4" role="alert" tabindex="-1" aria-labelledby="hs-toast-success-example-label">
-            <div class="flex p-4">
-                <div class="flex-shrink-0">
-                    <svg class="w-6 h-6 text-teal-500 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="#14b8a6" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-                    </svg>
-                </div>
-                <div class="ml-3">
-                    <p id="hs-toast-success-example-label" class="text-sm text-gray-700">
-                        You logged in successfully and were redirected to search rooms.
-                    </p>
-                </div>
-            </div>
-        </div>
+        <?php include 'success_toast.php'; ?>
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
                 <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -124,15 +110,15 @@ unset($_SESSION['logged_success']);
                         </div>
                     </div>
                 </div>
-                <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <span class="mr-4 text-sm text-gray-300"><?php echo htmlspecialchars($username); ?></span>
-                    <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span class="absolute -inset-1.5"></span>
-                        <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                        </svg>
-                    </button>
+                <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"">
+                <span class="mr-4 text-sm text-gray-300"><?php echo htmlspecialchars($username); ?></span>
+                        <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <span class="absolute -inset-1.5"></span>
+                            <span class="sr-only">View notifications</span>
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                            </svg>
+                        </button>
 
                     <!-- Profile dropdown -->
                     <div class="relative ml-3">
@@ -268,4 +254,5 @@ unset($_SESSION['logged_success']);
     <!-- Include Footer -->
     <?php include 'footer.php'; ?>
 </body>
+
 </html>

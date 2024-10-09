@@ -34,12 +34,14 @@ if (!$booking) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10">
         <h1 class="text-2xl font-bold mb-5">Booking Confirmation</h1>
@@ -54,14 +56,17 @@ if (!$booking) {
             <p><strong>Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
             <p><strong>Status:</strong> <?php echo htmlspecialchars($booking['status']); ?></p>
         </div>
-    
-    <!-- Return Button -->
-    <div class="mt-6">
+
+        <!-- Return Button -->
+        <div class="mt-4">
             <a href="search.php" class="inline-block px-4 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600">
                 Return to Search
             </a>
         </div>
     </div>
 
+    <!-- Include Footer -->
+    <?php include 'footer.php'; ?>
 </body>
+
 </html>
