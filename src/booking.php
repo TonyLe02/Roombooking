@@ -63,6 +63,9 @@ if (!$room) {
             </div>
 
             <button type="submit" class="mt-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Proceed to Payment</button>
+            <br>
+            <button href="search.php" class="mt-2 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">Return  to  booking</button>
+            
         </form>
     </div>
 </body>
