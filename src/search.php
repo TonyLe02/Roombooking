@@ -68,8 +68,6 @@ unset($_SESSION['logged_success']);
     <!-- Sticky Navbar -->
     <?php include 'navbar_search.php'; ?>
 
-    <?php include 'success_toast.php'; ?>
-
     <!-- Main content -->
     <div class="container mx-auto mt-10 p-5 bg-white shadow-md rounded-lg">
         <h1 class="text-3xl font-bold mb-5 text-center">Available Rooms</h1>
