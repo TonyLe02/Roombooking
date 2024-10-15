@@ -7,14 +7,7 @@
     <title>Room Booking App</title>
 </head>
 <body class="bg-gray-100">
-    <nav class="bg-blue-500 p-4">
-        <ul class="flex space-x-4">
-            <li><a href="/Roombooking/public/index.php" class="text-white">Home</a></li>
-            <li><a href="/Roombooking/public/booking.php" class="text-white">Booking</a></li>
-            <li><a href="/Roombooking/public/login.php" class="text-white">Login</a></li>
-            <li><a href="/Roombooking/public/dashboard.php" class="text-white">Dashboard</a></li>
-        </ul>
-    </nav>
+<?php include __DIR__ . '/../components/navbar.php'; ?>
     <div class="container mx-auto p-4">
         <?php include($view); ?>
     </div>
