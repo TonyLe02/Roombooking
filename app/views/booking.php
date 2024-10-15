@@ -34,8 +34,8 @@
     </div>
 
     <!-- Include Flatpickr JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
+    <!-- <script>
         // Initialize Flatpickr for both date fields
         flatpickr("#checkin_date", {
             dateFormat: "Y-m-d",
@@ -55,5 +55,5 @@
             dateFormat: "Y-m-d",
             minDate: "today",
         });
-    </script>
+    </script> -->
 </body>
