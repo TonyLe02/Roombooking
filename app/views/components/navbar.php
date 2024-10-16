@@ -33,7 +33,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Henter filnavnet fra URL-e
             </div>
             <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <?php if (isset($_SESSION['username'])): ?>
-                    <span class="mr-4 text-sm text-gray-300">Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    <span class="mr-4 text-sm text-gray-300"><?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="absolute -inset-1.5"></span>
                         <span class="sr-only">View notifications</span>
