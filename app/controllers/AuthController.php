@@ -1,4 +1,5 @@
 <?php
+require_once '../models/User.php'; // Adjust if needed
 
 class AuthController extends Controller {
     private $userModel;
@@ -23,7 +24,7 @@ class AuthController extends Controller {
 
             try {
                 // Check if the username already exists
-                if ($this->userModel->exists($username)) {
+                if ($this->userModel->usernameExists($username)) {
                     throw new Exception("Username already exists. Please choose another.");
                 }
 
@@ -46,3 +47,4 @@ class AuthController extends Controller {
         // Login logic using User model...
     }
 }
+?>
