@@ -11,8 +11,15 @@
 </head>
 
 <body class="bg-gray-100">
-    <?php include __DIR__ . '/../components/navbar.php'; ?>
-    <div class="container mx-auto p-4">
+    <?php
+    // Get the current script's filename
+    $current_page = basename($_SERVER['SCRIPT_FILENAME']);
+
+    // Conditionally include the navbar
+    if ($current_page !== 'process_booking.php' && $current_page !== 'confirmation.php') {
+        include __DIR__ . '/../components/navbar.php';
+    }
+    ?> <div class="container mx-auto p-4">
         <?php include($view); ?>
     </div>
     <script src="/Roombooking/public/js/app.js"></script>
