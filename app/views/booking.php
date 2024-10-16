@@ -1,4 +1,34 @@
 <!-- Booking form or content goes here -->
+<?php
+// Include the database connection script
+include __DIR__ . '/../core/db_connect.php';
+
+// Fetch room data
+$room_id = $_GET['room_id'] ?? null;
+$room = null;
+
+// Include the database connection script
+include __DIR__ . '/../core/db_connect.php';
+
+// Get the room ID from the query parameter
+$room_id = isset($_GET['room_id']) ? intval($_GET['room_id']) : 0;
+
+// Fetch room details from the database
+$sql = "SELECT r.room_number, rt.name AS room_type FROM rooms r JOIN room_types rt ON r.type_id = rt.id WHERE r.id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $room_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$room = $result->fetch_assoc();
+
+// Check if the room exists
+if (!$room) {
+    echo "Room not found.";
+    exit();
+}
+?>
+
+
 <body class="bg-gray-100">
     <div class="container mx-auto mt-10">
         <h1 class="text-3xl font-bold mb-4 text-center text-green-600">Book Room: <?php echo htmlspecialchars($room['room_number']); ?></h1>
@@ -34,8 +64,8 @@
     </div>
 
     <!-- Include Flatpickr JavaScript -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
-    <!-- <script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
         // Initialize Flatpickr for both date fields
         flatpickr("#checkin_date", {
             dateFormat: "Y-m-d",
@@ -55,5 +85,5 @@
             dateFormat: "Y-m-d",
             minDate: "today",
         });
-    </script> -->
+    </script>
 </body>
