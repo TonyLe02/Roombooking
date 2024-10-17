@@ -51,10 +51,9 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                     <!-- Notifications Button -->
                     <button type="button" class="relative rounded-full bg-transparent p-1 text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-                        </svg>
+                        <i class="fas fa-bell h-6 w-6 text-gray-800"></i>
                     </button>
+
 
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
