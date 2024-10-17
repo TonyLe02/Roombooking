@@ -1,6 +1,9 @@
 <?php
 // Start the session
 session_start();
+// Include the database connection script
+include __DIR__ . '/../../core/db_connect.php';
+
 $current_page = basename($_SERVER['REQUEST_URI']); // Henter filnavnet fra URL-en
 ?>
 
