@@ -4,13 +4,12 @@ session_start();
 // Include the database connection script
 include __DIR__ . '/../../core/db_connect.php';
 
-$current_page = basename($_SERVER['REQUEST_URI']); // Henter filnavnet fra URL-en
+$current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the URL
 ?>
 
-<nav class="bg-gray-800">
+<nav class="bg-[#2E3192] shadow-lg">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
-
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
@@ -40,17 +39,19 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Henter filnavnet fra URL-e
                     $stmt->close();
                     ?>
 
-                    <span class="mr-4 text-sm text-gray-300">
-                        <?php echo htmlspecialchars($_SESSION['username']); ?>
+                    <span class="mr-4 text-sm text-white">
+                        <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-gray-900 bg-white rounded-full">
+                            <?php echo htmlspecialchars($_SESSION['username']); ?>
+                        </span>
                         <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full">
                             <?php echo ucfirst($userRole); ?>
                         </span>
                     </span>
 
                     <!-- Notifications Button -->
-                    <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <button type="button" class="relative rounded-full bg-transparent p-1 text-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="sr-only">View notifications</span>
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                        <svg class="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                         </svg>
                     </button>
@@ -58,9 +59,9 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Henter filnavnet fra URL-e
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
                         <div>
-                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
+                            <button type="button" class="relative flex rounded-full bg-transparent text-sm text-white    hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
                                 <span class="sr-only">Open user menu</span>
-                                <svg class="h-8 w-8 rounded-full" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                <svg class="h-8 w-8 rounded-full" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                                 </svg>
                             </button>
