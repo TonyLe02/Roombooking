@@ -1,27 +1,41 @@
-<!-- Admin form or content goes here -->
-<div class="container mx-auto max-w-4xl p-4">
-    <h1 class="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-
-    <!-- Add Room Type Form -->
-    <div class="mt-8">
-        <h2 class="text-2xl font-bold text-gray-500">Add Room Type</h2>
-        <form action="admin.php" method="POST" class="mt-4">
-            <div class="mb-4">
-                <label for="room_type_name" class="block text-sm font-medium text-gray-700">Room Type Name</label>
-                <input type="text" name="room_type_name" id="room_type_name" class="mt-1 block w-full" required>
+<body class="bg-gray-100">
+    <div class="container mx-auto max-w-4xl p-6">
+        <div class="mt-10">
+            <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">All Rooms</h2>
+            <div class="overflow-x-auto rounded-lg shadow-lg">
+                <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
+                        <tr>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Room Number</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Room Type</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Description</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Available</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Floor</th>
+                            <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Proximity to Elevator</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr class="hover:bg-gray-50 hover:shadow-sm transition-all duration-200">
+                                <td class="border px-6 py-3 text-sm text-gray-700"><?php echo htmlspecialchars($row['room_number']); ?></td>
+                                <td class="border px-6 py-3 text-sm text-gray-700"><?php echo htmlspecialchars($row['room_type']); ?></td>
+                                <td class="border px-6 py-3 text-sm text-gray-700"><?php echo htmlspecialchars($row['room_description']); ?></td>
+                                <td class="border px-6 py-3 text-sm text-gray-700">
+                                    <span class="<?php echo $row['available'] ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'; ?> px-2 py-1 rounded-full text-xs font-semibold">
+                                        <?php echo $row['available'] ? 'Yes' : 'No'; ?>
+                                    </span>
+                                </td>
+                                <td class="border px-6 py-3 text-sm text-gray-700"><?php echo htmlspecialchars($row['floor']); ?></td>
+                                <td class="border px-6 py-3 text-sm text-gray-700">
+                                    <span class="<?php echo $row['proximity_to_elevator'] ? 'bg-blue-100 text-blue-800' : 'bg-gray-100 text-gray-600'; ?> px-2 py-1 rounded-full text-xs font-semibold">
+                                        <?php echo $row['proximity_to_elevator'] ? 'Yes' : 'No'; ?>
+                                    </span>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="mb-4">
-                <label for="room_type_description" class="block text-sm font-medium text-gray-700">Description</label>
-                <textarea name="room_type_description" id="room_type_description" class="mt-1 block w-full" required></textarea>
-            </div>
-            <div class="mb-4">
-                <label for="max_adults" class="block text-sm font-medium text-gray-700">Max Adults</label>
-                <input type="number" name="max_adults" id="max_adults" class="mt-1 block w-full" required>
-            </div>
-            <div class="mb-4">
-                <label for="max_children" class="block text-sm font-medium text-gray-700">Max Children</label>
-                <input type="number" name="max_children" id="max_children" class="mt-1 block w-full" required>
-            </div>
-            <button type="submit" name="add_room_type" class="w-full bg-blue-500 text-white py-2 px-4 rounded">Add Room Type</button>
-        </form>
+        </div>
     </div>
+</body>

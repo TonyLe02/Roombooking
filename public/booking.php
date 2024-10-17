@@ -1,5 +1,8 @@
 <?php
 
+// Database connection
+include __DIR__ . '/../app/core/db_connect.php';
+
 // Manually configure environment variables
 $databaseConfig = [
     'host' => 'localhost',
