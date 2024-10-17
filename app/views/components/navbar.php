@@ -9,24 +9,31 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
 
 <nav class="bg-white shadow-lg">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+
         <div class="relative flex h-16 items-center justify-between">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-2 sm:static sm:inset-auto sm:ml-6 sm:pl-0">
+                <h2 class="text-4xl font-bold mb-4 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">MotelT</h2>
+            </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="hidden sm:ml-6 sm:block">
+
                     <div class="flex space-x-4">
-                        <a href="/Roombooking/public/index.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'index.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>" aria-current="page">Home</a>
+
+                        <a href="/Roombooking/public/index.php" class="rounded-md px-3 py-2 text-sm font-semibold <?php echo $current_page == 'index.php' ? 'bg-gray-800 text-white' : 'text-gray-900  hover:text-[#2E3192]'; ?>" aria-current="page">Home</a>
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'register.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Register</a>
-                            <a href="/Roombooking/public/login.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'login.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Login</a>
+                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-semibold <?php echo $current_page == 'register.php' ? 'bg-gray-800 text-white' : 'text-gray-900  hover:text-#2E3192'; ?>">Register</a>
+                            <a href="/Roombooking/public/login.php" class="rounded-md px-3 py-2 text-sm font-semibold <?php echo $current_page == 'login.php' ? 'bg-gray-800 text-white' : 'text-gray-900  hover:text-[#2E3192]'; ?>">Login</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['username']) && ($_SESSION['role'] == 'guest' || $_SESSION['role'] == 'admin')): ?>
-                            <a href="/Roombooking/public/search.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'search.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Search Rooms</a>
+                            <a href="/Roombooking/public/search.php" class="rounded-md px-3 py-2 text-sm font-semibold <?php echo $current_page == 'search.php' ? 'bg-gray-800 text-white' : 'text-gray-900  hover:text-[#2E3192]'; ?>">Search Rooms</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                            <a href="/Roombooking/public/admin.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'admin.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Admin Dashboard</a>
+                            <a href="/Roombooking/public/admin.php" class="rounded-md px-3 py-2 text-sm font-semibold <?php echo $current_page == 'admin.php' ? 'bg-gray-800 text-white' : 'text-gray-900  hover:text-[#2E3192]'; ?>">Admin Dashboard</a>
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
+
             <div class="absolute inset-y-0 right-0 flex space-x-4 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <?php if (isset($_SESSION['username'])): ?>
                     <?php
