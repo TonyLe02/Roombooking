@@ -7,22 +7,22 @@ include __DIR__ . '/../../core/db_connect.php';
 $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the URL
 ?>
 
-<nav class="bg-[#2E3192] shadow-lg">
+<nav class="bg-white shadow-lg">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
-                        <a href="/Roombooking/public/index.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'index.php' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>" aria-current="page">Home</a>
+                        <a href="/Roombooking/public/index.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'index.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>" aria-current="page">Home</a>
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'register.php' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Register</a>
-                            <a href="/Roombooking/public/login.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'login.php' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Login</a>
+                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'register.php' ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Register</a>
+                            <a href="/Roombooking/public/login.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'login.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Login</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['username']) && ($_SESSION['role'] == 'guest' || $_SESSION['role'] == 'admin')): ?>
-                            <a href="/Roombooking/public/search.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'search.php' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Search Rooms</a>
+                            <a href="/Roombooking/public/search.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'search.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Search Rooms</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
-                            <a href="/Roombooking/public/admin.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'admin.php' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Admin Dashboard</a>
+                            <a href="/Roombooking/public/admin.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'admin.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Admin Dashboard</a>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -40,7 +40,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                     ?>
 
                     <span class="mr-4 text-sm text-white">
-                        <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-gray-900 bg-white rounded-full">
+                        <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-gray-800 rounded-full">
                             <?php echo htmlspecialchars($_SESSION['username']); ?>
                         </span>
                         <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full">
@@ -49,7 +49,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                     </span>
 
                     <!-- Notifications Button -->
-                    <button type="button" class="relative rounded-full bg-transparent p-1 text-white hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <button type="button" class="relative rounded-full bg-transparent p-1 text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span class="sr-only">View notifications</span>
                         <svg class="h-6 w-6" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
@@ -59,7 +59,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                     <!-- Profile Dropdown -->
                     <div class="relative ml-3">
                         <div>
-                            <button type="button" class="relative flex rounded-full bg-transparent text-sm text-white    hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
+                            <button type="button" class="relative flex rounded-full bg-transparent text-sm text-gray-800 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
                                 <span class="sr-only">Open user menu</span>
                                 <svg class="h-8 w-8 rounded-full" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
