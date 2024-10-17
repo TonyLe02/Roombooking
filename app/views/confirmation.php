@@ -26,7 +26,7 @@ try {
 $booking_id = isset($_GET['booking_id']) ? intval($_GET['booking_id']) : 0;
 
 // Fetch booking details from the database
-$sql = "SELECT b.id, b.check_in, b.check_out, b.adults, b.children, b.status, r.room_number, rt.name AS room_type
+$sql = "SELECT b.id, b.check_in, b.check_out, b.adults, b.children, b.status, r.room_number, rt.name AS room_type, rt.max_adults, rt.max_children
         FROM bookings b
         JOIN rooms r ON b.room_id = r.id
         JOIN room_types rt ON r.type_id = rt.id
@@ -130,14 +130,12 @@ $check_out = new DateTime($booking['check_out']);
                 <div class="flex items-center">
                     <p><strong>Check-out Date:</strong> <?php echo htmlspecialchars($booking['check_out']); ?></p>
                 </div>
+
                 <div class="flex items-center">
-                    <p><strong>Adults:</strong> <?php echo htmlspecialchars($booking['adults']); ?></p>
+                    <p><strong>Max Adults:</strong> <?php echo htmlspecialchars($booking['max_adults']); ?></p>
                 </div>
                 <div class="flex items-center">
-                    <p><strong>Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
-                </div>
-                <div class="flex items-center">
-                    <p><strong>Status:</strong> <?php echo htmlspecialchars($booking['status']); ?></p>
+                    <p><strong>Max Children:</strong> <?php echo htmlspecialchars($booking['max_children']); ?></p>
                 </div>
             </div>
         </div>
