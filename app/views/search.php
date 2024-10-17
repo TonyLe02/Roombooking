@@ -4,9 +4,6 @@
 
     <div id="room-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <?php
-        // Include the database connection script
-        include __DIR__ . '/../core/db_connect.php';
-
         // Enable error reporting
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
@@ -22,7 +19,7 @@
             $stmt->execute();
 
             // Query to fetch room details along with room type, sorted by availability
-            $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator
+            $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
             FROM rooms r
             JOIN room_types rt ON r.type_id = rt.id
             ORDER BY r.available DESC"; // Sort by availability first
@@ -41,6 +38,8 @@
                         <p class='text-gray-700'><strong>Available:</strong> " . ($row['available'] ? 'Yes' : 'No') . "</p>
                         <p class='text-gray-700'><strong>Floor:</strong> " . htmlspecialchars($row['floor']) . "</p>
                         <p class='text-gray-700'><strong>Proximity to Elevator:</strong> " . ($row['proximity_to_elevator'] ? 'Yes' : 'No') . "</p>
+                        <p class='text-gray-700'><strong>Max Adults:</strong> " . htmlspecialchars($row['max_adults']) . "</p>
+                        <p class='text-gray-700'><strong>Max Children:</strong> " . htmlspecialchars($row['max_children']) . "</p>
                         <div class='mt-4'>";
                     if ($row['available']) {
                         echo "<a href='booking.php?room_id=" . htmlspecialchars($row['id']) . "' class='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 transition duration-200'>Book</a>";
