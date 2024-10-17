@@ -1,4 +1,12 @@
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <!-- Banner Section -->
+    <header class="mt-4 rounded-lg bg-gradient-to-r from-[#2E3192] to-[#1BFFFF] text-white py-12 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-6xl font-extrabold leading-snug">Admin Dashboard</h1>
+            <p class="mt-4 text-2xl italic">Manage Room Availability with Ease</p>
+            <p class="mt-2 text-lg">Oversee bookings, check availability, and ensure seamless operations</p>
+        </div>
+    </header>
     <div class="container mx-auto max-w-4xl p-6">
         <div class="mt-10">
             <h2 class="text-3xl font-bold mb-8 text-center text-gray-800">All Rooms</h2>

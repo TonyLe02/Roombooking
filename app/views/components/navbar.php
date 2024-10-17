@@ -50,7 +50,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                         <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-gray-800 rounded-full">
                             <?php echo htmlspecialchars($_SESSION['username']); ?>
                         </span>
-                        <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-blue-600 rounded-full">
+                        <span class="inline-block ml-2 px-2 py-1 text-xs font-semibold text-white bg-[#2E3192] rounded-full">
                             <?php echo ucfirst($userRole); ?>
                         </span>
                     </span>
