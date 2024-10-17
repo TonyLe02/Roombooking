@@ -1,5 +1,5 @@
 <!-- Search form or content goes here -->
-<div class="container mx-auto mt-10 p-5 bg-white shadow-md rounded-lg">
+<div class="container mx-auto mt-10 p-5">
     <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Available Rooms</h1>
 
     <div id="room-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -30,30 +30,53 @@
             if ($result->num_rows > 0) {
                 // Output data for each room
                 while ($row = $result->fetch_assoc()) {
-                    $bgColor = $row['available'] ? 'bg-green-50' : 'bg-red-50'; // Distinguishing background color
-                    echo "<div class='shadow-lg rounded-xl overflow-hidden border border-gray-200 transition-transform duration-300 transform hover:scale-105 " . $bgColor . "'>
+                    // Background color based on availability
+                    $bgColor = $row['available'] ? 'bg-white' : 'bg-white';
+
+                    echo "<div class='shadow-lg rounded-xl overflow-hidden border border-gray-200 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl " . $bgColor . "'>
                     <div class='p-6'>
                         <h2 class='text-2xl font-semibold text-gray-900'>" . htmlspecialchars($row['room_number']) . "</h2>
                         <p class='text-gray-600 mt-1'>" . htmlspecialchars($row['room_type']) . "</p>
                         <div class='mt-4'>
-                            <p class='text-gray-700'><strong>Available:</strong> " . ($row['available'] ? '<span class="text-green-600">Yes</span>' : '<span class="text-red-600">No</span>') . "</p>
-                            <p class='text-gray-700'><strong>Floor:</strong> " . htmlspecialchars($row['floor']) . "</p>
-                            <p class='text-gray-700'><strong>Proximity to Elevator:</strong> " . ($row['proximity_to_elevator'] ? 'Yes' : 'No') . "</p>
-                            <p class='text-gray-700'><strong>Max Adults:</strong> " . htmlspecialchars($row['max_adults']) . "</p>
-                            <p class='text-gray-700'><strong>Max Children:</strong> " . htmlspecialchars($row['max_children']) . "</p>
+                            <p class='text-gray-700 flex items-center'>
+                                <strong>Available:</strong> 
+                                <span class='ml-2 px-2 py-1 rounded-full text-sm " . ($row['available'] ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600') . "'>
+                                    " . ($row['available'] ? 'Yes' : 'No') . "
+                                </span>
+                            </p>
+                            <p class='text-gray-700 flex items-center mt-2'>
+                                <strong>Floor:</strong> 
+                                <span class='ml-2'>" . htmlspecialchars($row['floor']) . "</span>
+                            </p>
+                            <p class='text-gray-700 flex items-center mt-2'>
+                                <strong>Proximity to Elevator:</strong> 
+                                <span class='ml-2 text-sm flex items-center'>
+                                    " . ($row['proximity_to_elevator'] ? '<span class="bg-green-100 text-green-600 px-2 py-1 rounded-full">Yes</span>' : '<span class="bg-red-100 text-red-600 px-2 py-1 rounded-full">No</span>') . "
+                                </span>
+                            </p>
+                            <p class='text-gray-700 flex items-center mt-2'>
+                                <strong>Max Adults:</strong> 
+                                <span class='ml-2'>" . htmlspecialchars($row['max_adults']) . "</span>
+                            </p>
+                            <p class='text-gray-700 flex items-center mt-2'>
+                                <strong>Max Children:</strong> 
+                                <span class='ml-2'>" . htmlspecialchars($row['max_children']) . "</span>
+                            </p>
                         </div>
                         <div class='mt-6'>";
                     if ($row['available']) {
-                        echo "<a href='booking.php?room_id=" . htmlspecialchars($row['id']) . "' class='bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition duration-300 ease-in-out shadow-md inline-block'>Book Now</a>";
+                        echo "<a href='booking.php?room_id=" . htmlspecialchars($row['id']) . "' class='bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition duration-300 ease-in-out shadow-md inline-block'>
+                                Book Now
+                              </a>";
                     } else {
-                        echo "<span class='text-red-500 font-semibold'>Occupied</span>";
+                        echo "<span class='text-red-500 font-semibold bg-red-100 px-3 py-1 rounded-full shadow-sm'>Occupied</span>";
                     }
                     echo "      </div>
                     </div>
                   </div>";
                 }
             } else {
-                echo "<p class='text-center text-gray-500'>No available rooms found.</p>";
+                echo "<p class='text-center text-red-600'>No available rooms found.</p>";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
