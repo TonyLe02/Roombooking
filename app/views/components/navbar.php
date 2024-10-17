@@ -15,7 +15,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                     <div class="flex space-x-4">
                         <a href="/Roombooking/public/index.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'index.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>" aria-current="page">Home</a>
                         <?php if (!isset($_SESSION['username'])): ?>
-                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'register.php' ? 'bg-gray-800 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'; ?>">Register</a>
+                            <a href="/Roombooking/public/register.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'register.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Register</a>
                             <a href="/Roombooking/public/login.php" class="rounded-md px-3 py-2 text-sm font-medium <?php echo $current_page == 'login.php' ? 'bg-gray-800 text-white' : 'text-gray-900 hover:bg-gray-700 hover:text-white'; ?>">Login</a>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['username']) && ($_SESSION['role'] == 'guest' || $_SESSION['role'] == 'admin')): ?>
