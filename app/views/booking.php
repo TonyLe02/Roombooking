@@ -33,14 +33,14 @@ if (!$room) {
 
             <div class="mb-6">
                 <label for="checkin_date" class="block text-sm font-medium text-gray-700 mb-2">Check-in Date</label>
-                <input type="text" id="checkin_date" name="checkin_date"
+                <input type="date" id="checkin_date" name="checkin_date"
                     class="mt-1 block w-full rounded-lg border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 placeholder-gray-400 px-4 py-2 transition-all duration-300 ease-in-out"
                     placeholder="Select Date" required>
             </div>
 
             <div class="mb-6">
                 <label for="checkout_date" class="block text-sm font-medium text-gray-700 mb-2">Check-out Date</label>
-                <input type="text" id="checkout_date" name="checkout_date"
+                <input type="date" id="checkout_date" name="checkout_date"
                     class="mt-1 block w-full rounded-lg border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 placeholder-gray-400 px-4 py-2 transition-all duration-300 ease-in-out"
                     placeholder="Select Date" required>
             </div>
@@ -81,7 +81,7 @@ if (!$room) {
                 const checkinDate = selectedDates[0];
                 if (checkinDate) {
                     // Update the checkout date picker
-                    checkoutFlatpickr.set('minDate', new Date(checkinDate.getTime() + 86400000)); // Add one day to the check-in date
+                    checkoutFlatpickr.set('minDate', new Date(checkinDate.getTime() + 96400000)); // Add one day to the check-in date
                     checkoutFlatpickr.clear();
                 }
             }

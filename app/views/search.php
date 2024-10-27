@@ -180,7 +180,7 @@
             const checkinDate = selectedDates[0];
             if (checkinDate) {
                 // Update the checkout date picker
-                checkoutFlatpickr.set('minDate', new Date(checkinDate.getTime() + 86400000)); // Add one day to the check-in date
+                checkoutFlatpickr.set('minDate', new Date(checkinDate.getTime() + 96400000)); // Add one day to the check-in date
                 checkoutFlatpickr.clear();
             }
         }
