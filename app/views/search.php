@@ -16,13 +16,13 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label for="checkin_date" class="block text-sm font-medium text-gray-700 mb-2">Check-In Date</label>
-                        <input type="date" id="checkin_date" name="checkin_date" required
+                        <input type="date" id="checkin_date" placeholder="Select Date" name="checkin_date" required
                             class="p-3 border border-gray-300 rounded-lg w-full transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 placeholder-gray-400"
                             value="<?php echo isset($_GET['checkin_date']) ? htmlspecialchars($_GET['checkin_date']) : ''; ?>">
                     </div>
                     <div>
                         <label for="checkout_date" class="block text-sm font-medium text-gray-700 mb-2">Check-Out Date</label>
-                        <input type="date" id="checkout_date" name="checkout_date" required
+                        <input type="date" id="checkout_date" placeholder="Select Date" name="checkout_date" required
                             class="p-3 border border-gray-300 rounded-lg w-full transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 placeholder-gray-400"
                             value="<?php echo isset($_GET['checkout_date']) ? htmlspecialchars($_GET['checkout_date']) : ''; ?>">
                     </div>
