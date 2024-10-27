@@ -28,15 +28,35 @@
                     </div>
                     <div>
                         <label for="adults" class="block text-sm font-medium text-gray-700 mb-2">Adults</label>
-                        <input type="number" name="adults" min="1" required
-                            class="p-3 border border-gray-300 rounded-lg w-full transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 placeholder-gray-400"
-                            value="<?php echo isset($_GET['adults']) ? htmlspecialchars($_GET['adults']) : '1'; ?>">
+                        <div class="relative flex items-center max-w-[10rem]">
+                            <button type="button" id="decrement-adults" data-input-counter-decrement="adults" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                </svg>
+                            </button>
+                            <input type="text" id="adults" name="adults" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5" value="<?php echo isset($_GET['adults']) ? htmlspecialchars($_GET['adults']) : '1'; ?>" required />
+                            <button type="button" id="increment-adults" data-input-counter-increment="adults" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-r-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div>
                         <label for="children" class="block text-sm font-medium text-gray-700 mb-2">Children</label>
-                        <input type="number" name="children" min="0"
-                            class="p-3 border border-gray-300 rounded-lg w-full transition duration-200 ease-in-out focus:border-blue-500 focus:ring-2 focus:ring-blue-200 placeholder-gray-400"
-                            value="<?php echo isset($_GET['children']) ? htmlspecialchars($_GET['children']) : '0'; ?>">
+                        <div class="relative flex items-center max-w-[10rem]">
+                            <button type="button" id="decrement-children" data-input-counter-decrement="children" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-l-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                </svg>
+                            </button>
+                            <input type="text" id="children" name="children" data-input-counter aria-describedby="helper-text-explanation" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5" value="<?php echo isset($_GET['children']) ? htmlspecialchars($_GET['children']) : '0'; ?>" required />
+                            <button type="button" id="increment-children" data-input-counter-increment="children" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-r-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-6 flex justify-center">
@@ -169,7 +189,9 @@
         </div>
     </main>
 </body>
-<!-- Include Flatpickr JavaScript -->
+
+<!-- Include Flowbite CSS -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script><!-- Include Flatpickr JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
     // Initialize Flatpickr for both date fields
