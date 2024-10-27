@@ -17,21 +17,41 @@
                 </a>
             <?php endif; ?>
         </section>
-
         <section class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
-                <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Quick Booking</h3>
-                <p class="text-gray-700">Find and reserve your room with just a few clicks.</p>
-            </div>
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
-                <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Flexible Options</h3>
-                <p class="text-gray-700 leading-0">Choose from various room types for any occasion.</p>
-            </div>
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
-                <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Outstanding Service</h3>
-                <p class="text-gray-700">Experience our unparalleled customer service.</p>
-            </div>
-        </section>
+    <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <img src="/Roombooking/public/images/Single.webp" alt="Single Bed Room" class="w-full h-48 object-cover">
+        <div class="p-6">
+            <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Single Bed</h3>
+        </div>
+    </div>
+    <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <img src="/Roombooking/public/images/Double.webp" alt="Double Bed Room" class="w-full h-48 object-cover">
+        <div class="p-6">
+            <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Double Bed</h3>
+        </div>
+    </div>
+    <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+        <img src="/Roombooking/public/images/Suite.webp" alt="Junior Suite" class="w-full h-48 object-cover">
+        <div class="p-6">
+            <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Junior Suite</h3>
+        </div>
+    </div>
+</section>
+
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-10">
+    <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+        <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Quick Booking</h3>
+        <p class="text-gray-700">Find and reserve your room with just a few clicks.</p>
+    </div>
+    <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+        <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Flexible Options</h3>
+        <p class="text-gray-700">Choose from various room types for any occasion.</p>
+    </div>
+    <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+        <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Outstanding Service</h3>
+        <p class="text-gray-700">Experience our unparalleled customer service.</p>
+    </div>
+</section>
     </main>
 
     <style>
