@@ -10,9 +10,9 @@
 
     <!-- Search Page Content -->
     <main class="container mx-auto mt-10 p-5">
-        <div class="container mx-auto max-w-4xl p-6">
+        <div class="container mx-auto rounded-xl max-w-4xl p-6">
             <!-- Search Bar for Dates and Guest Info -->
-            <form method="GET" class="mb-6 gap-6 p-8 bg-white rounded-2xl shadow-lg border border-gray-200">
+            <form method="GET">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label for="checkin_date" class="block text-sm font-medium text-gray-700 mb-2">Check-In Date</label>
