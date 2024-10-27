@@ -30,8 +30,7 @@ CREATE TABLE room_types (
 INSERT INTO room_types (name, description, max_adults, max_children) VALUES
 ('Enkeltrom', 'Liten, koselig rom med en enkeltseng.', 1, 0),
 ('Dobbeltrom', 'Rom med en dobbeltseng for par.', 2, 1),
-('Junior Suite', 'Romslig rom med en dobbeltseng og stue.', 2, 2),
-('Familierom', 'Stort rom med plass til en familie.', 2, 3);
+('Junior Suite', 'Romslig rom med en dobbeltseng og stue.', 2, 2);
 
 -- Create the rooms table
 CREATE TABLE rooms (
@@ -56,10 +55,10 @@ INSERT INTO rooms (room_number, type_id, available, floor, proximity_to_elevator
 ('108', 3, TRUE, 1, FALSE),  -- Room 108, Type 3, Available, Floor 1, Not near elevator
 ('109', 3, TRUE, 1, TRUE),   -- Room 109, Type 3, Available, Floor 1, Near elevator
 ('110', 3, TRUE, 1, FALSE),  -- Room 110, Type 3, Available, Floor 1, Not near elevator
-('201', 4, TRUE, 2, FALSE),  -- Room 201, Type 4, Available, Floor 2, Not near elevator
-('202', 4, TRUE, 2, TRUE),   -- Room 202, Type 4, Available, Floor 2, Near elevator
-('203', 4, TRUE, 2, TRUE),   -- Room 203, Type 4, Available, Floor 2, Near elevator
-('204', 4, TRUE, 2, FALSE),  -- Room 204, Type 4, Available, Floor 2, Not near elevator
+('201', 3, TRUE, 2, FALSE),  -- Room 201, Type 3, Available, Floor 2, Not near elevator
+('202', 3, TRUE, 2, TRUE),   -- Room 202, Type 3, Available, Floor 2, Near elevator
+('203', 3, TRUE, 2, TRUE),   -- Room 203, Type 3, Available, Floor 2, Near elevator
+('204', 3, TRUE, 2, FALSE),  -- Room 204, Type 3, Available, Floor 2, Not near elevator
 ('205', 2, TRUE, 2, TRUE),   -- Room 205, Type 2, Available, Floor 2, Near elevator
 ('206', 2, TRUE, 2, FALSE),  -- Room 206, Type 2, Available, Floor 2, Not near elevator
 ('207', 2, TRUE, 2, TRUE),   -- Room 207, Type 2, Available, Floor 2, Near elevator
