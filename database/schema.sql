@@ -28,8 +28,8 @@ CREATE TABLE room_types (
 
 -- Insert room types
 INSERT INTO room_types (name, description, max_adults, max_children) VALUES
-('Enkeltrom', 'Liten, koselig rom med en enkeltseng.', 1, 0),
-('Dobbeltrom', 'Rom med en dobbeltseng for par.', 2, 1),
+('Single Room', 'Liten, koselig rom med en enkeltseng.', 1, 0),
+('Double Room', 'Rom med en dobbeltseng for par.', 2, 1),
 ('Junior Suite', 'Romslig rom med en dobbeltseng og stue.', 2, 2);
 
 -- Create the rooms table

@@ -19,15 +19,15 @@
         </section>
         <section class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
-                <img src="/Roombooking/public/images/Single.webp" alt="Single Bed Room" class="w-full h-48 object-cover">
+                <img src="/Roombooking/public/images/Single.webp" alt="Double Bed Room" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Single Bed</h3>
+                    <h3 class="text-3xl font-semibold mb-3 leading-normal bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Single Room</h3>
                 </div>
             </div>
             <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
                 <img src="/Roombooking/public/images/Double.webp" alt="Double Bed Room" class="w-full h-48 object-cover">
                 <div class="p-6">
-                    <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Double Bed</h3>
+                    <h3 class="text-3xl font-semibold mb-3 leading-snug bg-clip-text text-transparent bg-gradient-to-r from-[#2E3192] to-[#1BFFFF]">Double Room</h3>
                 </div>
             </div>
             <div class="card bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
