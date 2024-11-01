@@ -28,9 +28,9 @@ CREATE TABLE room_types (
 
 -- Insert room types
 INSERT INTO room_types (name, description, max_adults, max_children) VALUES
-('Single Room', 'Liten, koselig rom med en enkeltseng.', 1, 0),
-('Double Room', 'Rom med en dobbeltseng for par.', 2, 1),
-('Junior Suite', 'Romslig rom med en dobbeltseng og stue.', 2, 2);
+('Single Room', 'Small, cozy room with a single bed.', 1, 0),
+('Double Room', 'Medium cozy room with a double bed.', 2, 1),
+('Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2);
 
 -- Create the rooms table
 CREATE TABLE rooms (

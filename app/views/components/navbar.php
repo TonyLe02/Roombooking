@@ -7,7 +7,7 @@ include __DIR__ . '/../../core/db_connect.php';
 $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the URL
 ?>
 
-<nav class="bg-white shadow-lg">
+<nav class="bg-white sticky shadow top-0 z-50">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
 
         <div class="relative flex h-16 items-center justify-between">

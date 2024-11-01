@@ -19,7 +19,6 @@ try {
 
     // Ensure the character set is set correctly
     $conn->set_charset("utf8mb4");
-
 } catch (Exception $e) {
     die("Connection failed: " . $e->getMessage());
 }
@@ -28,12 +27,12 @@ try {
 $room_id = isset($_POST['room_id']) ? intval($_POST['room_id']) : 0;
 $checkin_date = isset($_POST['checkin_date']) ? $_POST['checkin_date'] : '';
 $checkout_date = isset($_POST['checkout_date']) ? $_POST['checkout_date'] : '';
-$adults = isset($_POST['adults']) ? intval($_POST['adults']) : 0;
-$children = isset($_POST['children']) ? intval($_POST['children']) : 0;
+$num_adults = isset($_POST['num_adults']) ? intval($_POST['num_adults']) : 0;
+$num_children = isset($_POST['num_children']) ? intval($_POST['num_children']) : 0;
 $payment_method = isset($_POST['payment_method']) ? $_POST['payment_method'] : '';
 
 // Validate the form data
-if ($room_id && $checkin_date && $checkout_date && $adults >= 0 && $children >= 0 && $payment_method) {
+if ($room_id && $checkin_date && $checkout_date && $num_adults >= 0 && $num_children >= 0 && $payment_method) {
     // Start a transaction
     $conn->begin_transaction();
 
@@ -41,7 +40,7 @@ if ($room_id && $checkin_date && $checkout_date && $adults >= 0 && $children >= 
         // Insert the booking into the database
         $sql = "INSERT INTO bookings (room_id, user_id, check_in, check_out, adults, children, status) VALUES (?, ?, ?, ?, ?, ?, 'confirmed')";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("iissii", $room_id, $_SESSION['user_id'], $checkin_date, $checkout_date, $adults, $children);
+        $stmt->bind_param("iissii", $room_id, $_SESSION['user_id'], $checkin_date, $checkout_date, $num_adults, $num_children);
         $stmt->execute();
 
         // Update the room's availability
@@ -56,7 +55,6 @@ if ($room_id && $checkin_date && $checkout_date && $adults >= 0 && $children >= 
         // Redirect to a confirmation page or payment gateway
         header("Location: confirmation.php?booking_id=" . $stmt->insert_id);
         exit();
-
     } catch (Exception $e) {
         // Rollback the transaction if something goes wrong
         $conn->rollback();
@@ -65,4 +63,3 @@ if ($room_id && $checkin_date && $checkout_date && $adults >= 0 && $children >= 
 } else {
     echo "Invalid form data.";
 }
-?>

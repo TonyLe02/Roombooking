@@ -108,12 +108,11 @@ $check_out = new DateTime($booking['check_out']);
                 <div class="flex items-center">
                     <p><strong>Check-out Date:</strong> <?php echo htmlspecialchars($booking['check_out']); ?></p>
                 </div>
-
                 <div class="flex items-center">
-                    <p><strong>Max Adults:</strong> <?php echo htmlspecialchars($booking['max_adults']); ?></p>
+                    <p><strong>Number of Adults:</strong> <?php echo htmlspecialchars($booking['adults']); ?></p>
                 </div>
                 <div class="flex items-center">
-                    <p><strong>Max Children:</strong> <?php echo htmlspecialchars($booking['max_children']); ?></p>
+                    <p><strong>Number of Children:</strong> <?php echo htmlspecialchars($booking['children']); ?></p>
                 </div>
             </div>
         </div>
