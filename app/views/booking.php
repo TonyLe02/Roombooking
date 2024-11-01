@@ -9,7 +9,7 @@ $room = null;
 $room_id = isset($_GET['room_id']) ? intval($_GET['room_id']) : 0;
 
 // Fetch room details from the database
-$sql = "SELECT r.room_number, rt.name AS room_type FROM rooms r JOIN room_types rt ON r.type_id = rt.id WHERE r.id = ?";
+$sql = "SELECT r.room_number, rt.name AS room_type, rt.max_adults, rt.max_children FROM rooms r JOIN room_types rt ON r.type_id = rt.id WHERE r.id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $room_id);
 $stmt->execute();
@@ -43,6 +43,20 @@ if (!$room) {
                 <input type="date" id="checkout_date" name="checkout_date"
                     class="mt-1 block w-full rounded-lg border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 placeholder-gray-400 px-4 py-2 transition-all duration-300 ease-in-out"
                     placeholder="Select Date" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="num_adults" class="block text-sm font-medium text-gray-700 mb-2">Number of Adults</label>
+                <input type="number" id="num_adults" name="num_adults"
+                    class="mt-1 block w-full rounded-lg border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 placeholder-gray-400 px-4 py-2 transition-all duration-300 ease-in-out"
+                    min="1" max="<?php echo $room['max_adults']; ?>" required>
+            </div>
+
+            <div class="mb-6">
+                <label for="num_children" class="block text-sm font-medium text-gray-700 mb-2">Number of Children</label>
+                <input type="number" id="num_children" name="num_children"
+                    class="mt-1 block w-full rounded-lg border border-gray-300 focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50 placeholder-gray-400 px-4 py-2 transition-all duration-300 ease-in-out"
+                    min="0" max="<?php echo $room['max_children']; ?>" required>
             </div>
 
             <div class="mb-6">
