@@ -73,17 +73,16 @@
             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
             try {
-                // Initialize variables to check if filters are applied
+                // Check if filters are applied
                 $filtersApplied = isset($_GET['checkin_date'], $_GET['checkout_date'], $_GET['adults']) && !empty($_GET['checkin_date']) && !empty($_GET['checkout_date']) && !empty($_GET['adults']);
 
-                // Check if the user has provided filters
                 if ($filtersApplied) {
                     $checkIn = $_GET['checkin_date'];
                     $checkOut = $_GET['checkout_date'];
                     $adults = (int)$_GET['adults'];
                     $children = isset($_GET['children']) ? (int)$_GET['children'] : 0;
 
-                    // Check if the input dates are valid
+                    // Validate input dates
                     if ($checkIn >= $checkOut) {
                         echo "<p class='text-center text-red-600'>Check-out date must be after the check-in date.</p>";
                         exit;
@@ -92,25 +91,25 @@
                     // Update room availability based on check-out date
                     $currentDate = date('Y-m-d');
                     $updateSql = "UPDATE rooms r
-                      LEFT JOIN bookings b ON r.id = b.room_id
-                      SET r.available = TRUE
-                      WHERE b.check_out < ?";
+                          LEFT JOIN bookings b ON r.id = b.room_id
+                          SET r.available = TRUE
+                          WHERE b.check_out < ?";
                     $stmt = $conn->prepare($updateSql);
                     $stmt->bind_param('s', $currentDate);
                     $stmt->execute();
 
                     // SQL to find available rooms that meet the guest's requirements
                     $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
-                FROM rooms r
-                JOIN room_types rt ON r.type_id = rt.id
-                WHERE r.available = TRUE 
-                  AND rt.max_adults >= ? 
-                  AND rt.max_children >= ? 
-                  AND r.id NOT IN (
-                      SELECT room_id FROM bookings 
-                      WHERE (check_in < ? AND check_out > ?) OR (check_in < ? AND check_out > ?)
-                  )
-                ORDER BY r.available DESC";
+                    FROM rooms r
+                    JOIN room_types rt ON r.type_id = rt.id
+                    WHERE r.available = TRUE 
+                      AND rt.max_adults >= ? 
+                      AND rt.max_children >= ? 
+                      AND r.id NOT IN (
+                          SELECT room_id FROM bookings 
+                          WHERE (check_in < ? AND check_out > ?) OR (check_in < ? AND check_out > ?)
+                      )
+                    ORDER BY r.available DESC";
 
                     // Prepare and execute the query
                     $stmt = $conn->prepare($sql);
@@ -120,9 +119,9 @@
                 } else {
                     // No filters applied, show all rooms
                     $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
-                FROM rooms r
-                JOIN room_types rt ON r.type_id = rt.id
-                ORDER BY r.available DESC"; // Sort by availability
+                    FROM rooms r
+                    JOIN room_types rt ON r.type_id = rt.id
+                    ORDER BY r.available DESC"; // Sort by availability
 
                     $result = $conn->query($sql);
                 }
@@ -134,50 +133,52 @@
                         // Background color based on availability
                         $bgColor = $row['available'] ? 'bg-white' : 'bg-white';
 
-                        echo "<div class='shadow-lg rounded-xl overflow-hidden border border-gray-200 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl " . $bgColor . "'>
-            <div class='p-6'>
-                <h2 class='text-2xl font-semibold text-gray-900'>" . htmlspecialchars($row['room_number']) . "</h2>
-                <p class='text-gray-600 mt-1'>" . htmlspecialchars($row['room_type']) . "</p>
-                <div class='mt-4'>
-                    <p class='text-gray-700 flex items-center'>
-                        <strong>Available:</strong> 
-                        <span class='ml-2 px-2 py-1 rounded-full text-sm " . ($row['available'] ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600') . "'>
-                            " . ($row['available'] ? 'Yes' : 'No') . "
-                        </span>
-                    </p>
-                    <p class='text-gray-700 flex items-center mt-2'>
-                        <strong>Floor:</strong> 
-                        <span class='ml-2'>" . htmlspecialchars($row['floor']) . "</span>
-                    </p>
-                    <p class='text-gray-700 flex items-center mt-2'>
-                        <strong>Proximity to Elevator:</strong> 
-                        <span class='ml-2 text-sm flex items-center'>
-                            " . ($row['proximity_to_elevator'] ? '<span class="bg-green-100 text-green-600 px-2 py-1 rounded-full">Yes</span>' : '<span class="bg-red-100 text-red-600 px-2 py-1 rounded-full">No</span>') . "
-                        </span>
-                    </p>
-                    <p class='text-gray-700 flex items-center mt-2'>
-                        <strong>Max Adults:</strong> 
-                        <span class='ml-2'>" . htmlspecialchars($row['max_adults']) . "</span>
-                    </p>
-                    <p class='text-gray-700 flex items-center mt-2'>
-                        <strong>Max Children:</strong> 
-                        <span class='ml-2'>" . htmlspecialchars($row['max_children']) . "</span>
-                    </p>
-                </div>
-                <div class='mt-6'>";
+                        echo "<div class='shadow-lg rounded-lg overflow-hidden border border-gray-200 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl $bgColor'>
+                        <div class='p-6'>
+                            <h2 class='text-2xl font-semibold text-gray-900'>" . htmlspecialchars($row['room_number']) . "</h2>
+                            <p class='text-gray-600 mt-1'>" . htmlspecialchars($row['room_type']) . "</p>
+                            <div class='mt-4'>
+                                <p class='text-gray-700 flex items-center'>
+                                    <strong>Available:</strong> 
+                                    <span class='ml-2 px-2 py-1 rounded-full text-sm " . ($row['available'] ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600') . "'>
+                                        " . ($row['available'] ? 'Yes' : 'No') . "
+                                    </span>
+                                </p>
+                                <p class='text-gray-700 flex items-center mt-2'>
+                                    <strong>Floor:</strong> 
+                                    <span class='ml-2'>" . htmlspecialchars($row['floor']) . "</span>
+                                </p>
+                                <p class='text-gray-700 flex items-center mt-2'>
+                                    <strong>Proximity to Elevator:</strong> 
+                                    <span class='ml-2 text-sm flex items-center'>
+                                        " . ($row['proximity_to_elevator'] ? '<span class="bg-green-100 text-green-600 px-2 py-1 rounded-full">Yes</span>' : '<span class="bg-red-100 text-red-600 px-2 py-1 rounded-full">No</span>') . "
+                                    </span>
+                                </p>
+                                <p class='text-gray-700 flex items-center mt-2'>
+                                    <strong>Max Adults:</strong> 
+                                    <span class='ml-2'>" . htmlspecialchars($row['max_adults']) . "</span>
+                                </p>
+                                <p class='text-gray-700 flex items-center mt-2'>
+                                    <strong>Max Children:</strong> 
+                                    <span class='ml-2'>" . htmlspecialchars($row['max_children']) . "</span>
+                                </p>
+                            </div>
+                            <div class='mt-6'>";
                         if ($row['available']) {
                             echo "<a href='booking.php?room_id=" . htmlspecialchars($row['id']) . "&check_in=" . htmlspecialchars($checkIn ?? '') . "&check_out=" . htmlspecialchars($checkOut ?? '') . "&adults=" . htmlspecialchars($adults ?? 1) . "&children=" . htmlspecialchars($children ?? 0) . "' class='bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition duration-300 ease-in-out shadow-md inline-block'>
-                        Book Now
-                      </a>";
+                            Book Now
+                          </a>";
                         } else {
                             echo "<span class='text-red-500 font-semibold bg-red-100 px-3 py-1 rounded-full shadow-sm'>Occupied</span>";
                         }
                         echo "      </div>
-            </div>
-          </div>";
+                        </div>
+                      </div>";
                     }
                 } else {
-                    echo "<p class='text-center text-red-600'>No available rooms found for the selected dates and criteria.</p>";
+                    echo "<div class='col-span-full text-center'>
+                    <p class='text-red-600'>No available rooms found for the selected dates and criteria.</p>
+                  </div>";
                 }
             } catch (Exception $e) {
                 echo "Error: " . $e->getMessage();
@@ -185,7 +186,6 @@
 
             $conn->close();
             ?>
-
         </div>
     </main>
 </body>
