@@ -1,19 +1,16 @@
 {
   "name": "roombooking",
   "version": "1.0.0",
-  "description": "Dette er et PHP prosjekt for å lage et rombookingsystem",
-  "main": "index.js",
+  "main": "tailwind.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "postcss styles.css -o dist/styles.css --watch"
+    "build:css": "npx tailwindcss build -i public/css/input.css -o public/css/styles.css",
+    "dev": "npx tailwindcss -i public/css/input.css -o public/css/styles.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.47",
-    "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.13"
-  }
+  "dependencies": {
+    "tailwindcss": "^3.4.14"
+  },
+  "description": ""
 }
