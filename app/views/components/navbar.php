@@ -85,10 +85,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                                     <i class="fas fa-list mr-2 text-gray-400"></i>
                                     Your Booking
                                 </a>
-                                <a href="#" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
-                                    <i class="fas fa-cog mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
+                                
                                 <a href="/Roombooking/public/logout.php" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
                                     <i class="fas fa-sign-out-alt mr-2 text-gray-400"></i>
                                     Logout
