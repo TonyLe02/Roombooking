@@ -99,7 +99,7 @@
                     $stmt->execute();
 
                     // SQL to find available rooms that meet the guest's requirements
-                    $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
+                    $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.description, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
                     FROM rooms r
                     JOIN room_types rt ON r.type_id = rt.id
                     WHERE r.available = TRUE 
@@ -118,7 +118,7 @@
                     $result = $stmt->get_result();
                 } else {
                     // No filters applied, show all rooms
-                    $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
+                    $sql = "SELECT r.id, r.room_number, rt.name AS room_type, r.description, r.available, r.floor, r.proximity_to_elevator, rt.max_adults, rt.max_children
                     FROM rooms r
                     JOIN room_types rt ON r.type_id = rt.id
                     ORDER BY r.available DESC"; // Sort by availability
@@ -136,7 +136,8 @@
                         echo "<div class='shadow-lg rounded-lg overflow-hidden border border-gray-200 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl $bgColor'>
                         <div class='p-6'>
                             <h2 class='text-2xl font-semibold text-gray-900'>" . htmlspecialchars($row['room_number']) . "</h2>
-                            <p class='text-gray-600 mt-1'>" . htmlspecialchars($row['room_type']) . "</p>
+                            <p class='text-gray-900 text-xl mt-1'>" . htmlspecialchars($row['room_type']) . "</p>
+                            <p class='text-gray-600 mt-1'>" . htmlspecialchars($row['description']) . "</p>
                             <div class='mt-4'>
                                 <p class='text-gray-700 flex items-center'>
                                     <strong>Available:</strong> 

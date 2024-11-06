@@ -37,40 +37,44 @@ CREATE TABLE rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
     room_number VARCHAR(10) NOT NULL UNIQUE,
     type_id INT,
+    name VARCHAR(50) NOT NULL,
+    description TEXT,
+    max_adults INT NOT NULL,
+    max_children INT NOT NULL,
     available BOOLEAN DEFAULT TRUE,
     floor INT,
     proximity_to_elevator BOOLEAN DEFAULT FALSE,
-    FOREIGN KEY (type_id) REFERENCES room_types(id),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (type_id) REFERENCES room_types(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
-INSERT INTO rooms (room_number, type_id, available, floor, proximity_to_elevator) VALUES
-('101', 1, TRUE, 1, FALSE),  -- Room 101, Type 1, Available, Floor 1, Not near elevator
-('102', 1, TRUE, 1, TRUE),   -- Room 102, Type 1, Available, Floor 1, Near elevator
-('103', 1, TRUE, 1, TRUE),   -- Room 103, Type 1, Available, Floor 1, Near elevator
-('104', 2, TRUE, 1, FALSE),  -- Room 104, Type 2, Available, Floor 1, Not near elevator
-('105', 2, TRUE, 1, TRUE),   -- Room 105, Type 2, Available, Floor 1, Near elevator
-('106', 2, TRUE, 1, FALSE),  -- Room 106, Type 2, Available, Floor 1, Not near elevator
-('107', 3, TRUE, 1, TRUE),   -- Room 107, Type 3, Available, Floor 1, Near elevator
-('108', 3, TRUE, 1, FALSE),  -- Room 108, Type 3, Available, Floor 1, Not near elevator
-('109', 3, TRUE, 1, TRUE),   -- Room 109, Type 3, Available, Floor 1, Near elevator
-('110', 3, TRUE, 1, FALSE),  -- Room 110, Type 3, Available, Floor 1, Not near elevator
-('201', 3, TRUE, 2, FALSE),  -- Room 201, Type 3, Available, Floor 2, Not near elevator
-('202', 3, TRUE, 2, TRUE),   -- Room 202, Type 3, Available, Floor 2, Near elevator
-('203', 3, TRUE, 2, TRUE),   -- Room 203, Type 3, Available, Floor 2, Near elevator
-('204', 3, TRUE, 2, FALSE),  -- Room 204, Type 3, Available, Floor 2, Not near elevator
-('205', 2, TRUE, 2, TRUE),   -- Room 205, Type 2, Available, Floor 2, Near elevator
-('206', 2, TRUE, 2, FALSE),  -- Room 206, Type 2, Available, Floor 2, Not near elevator
-('207', 2, TRUE, 2, TRUE),   -- Room 207, Type 2, Available, Floor 2, Near elevator
-('208', 2, TRUE, 2, FALSE),  -- Room 208, Type 2, Available, Floor 2, Not near elevator
-('209', 2, TRUE, 2, TRUE),   -- Room 209, Type 2, Available, Floor 2, Near elevator
-('210', 2, TRUE, 2, FALSE),  -- Room 210, Type 2, Available, Floor 2, Not near elevator
-('211', 1, TRUE, 2, TRUE),    -- Room 211, Type 1, Available, Floor 2, Near elevator
-('212', 1, TRUE, 2, FALSE),   -- Room 212, Type 1, Available, Floor 2, Not near elevator
-('213', 2, TRUE, 2, TRUE),    -- Room 213, Type 2, Available, Floor 2, Near elevator
-('214', 2, TRUE, 2, FALSE),   -- Room 214, Type 2, Available, Floor 2, Not near elevator
-('215', 3, TRUE, 2, TRUE);    -- Room 215, Type 3, Available, Floor 2, Near elevator
-
+-- Insert rooms
+INSERT INTO rooms (room_number, type_id, name, description, max_adults, max_children, available, floor, proximity_to_elevator) VALUES
+('101', 1, 'Single Room', 'Small, cozy room with a single bed.', 1, 0, TRUE, 1, FALSE),
+('102', 1, 'Single Room', 'Small, cozy room with a single bed.', 1, 0, TRUE, 1, TRUE),
+('103', 1, 'Single Room', 'Small, cozy room with a single bed.', 1, 0, TRUE, 1, TRUE),
+('104', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 1, FALSE),
+('105', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 1, TRUE),
+('106', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 1, FALSE),
+('107', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 1, TRUE),
+('108', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 1, FALSE),
+('109', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 1, TRUE),
+('110', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 1, FALSE),
+('201', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 2, FALSE),
+('202', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 2, TRUE),
+('203', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 2, TRUE),
+('204', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 2, FALSE),
+('205', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, TRUE),
+('206', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, FALSE),
+('207', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, TRUE),
+('208', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, FALSE),
+('209', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, TRUE),
+('210', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, FALSE),
+('211', 1, 'Single Room', 'Small, cozy room with a single bed.', 1, 0, TRUE, 2, TRUE),
+('212', 1, 'Single Room', 'Small, cozy room with a single bed.', 1, 0, TRUE, 2, FALSE),
+('213', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, TRUE),
+('214', 2, 'Double Room', 'Medium cozy room with a double bed.', 2, 1, TRUE, 2, FALSE),
+('215', 3, 'Junior Suite', 'Spacious room with a double bed and a living area.', 2, 2, TRUE, 2, TRUE);
 
 -- Create the bookings table
 CREATE TABLE bookings (
@@ -115,5 +119,3 @@ CREATE TABLE unavailable_rooms (
     FOREIGN KEY (room_id) REFERENCES rooms(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
-

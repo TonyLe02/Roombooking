@@ -61,21 +61,23 @@
     <!-- Modal -->
     <div id="editModal" class="fixed inset-0 items-start justify-center pt-10 hidden z-50" style="backdrop-filter: blur(10px);">
         <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
-            <div class="flex justify-between items-center pb-3">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">Edit Room</h3>
-                <button id="closeModalX" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
+            <div class="bg-gray-800 text-white rounded-t-md">
+                <div class="flex justify-between items-center p-4">
+                    <h3 class="text-lg leading-6 font-medium">Edit Room</h3>
+                    <button id="closeModalX" class="text-gray-300 hover:text-gray-500">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
-            <form method="POST" action="admin.php" class="space-y-4">
+            <form method="POST" action="admin.php" class="space-y-4 p-4">
                 <input type="hidden" name="room_id" id="modal-room-id">
                 <div>
                     <label for="modal-room-number" class="block text-sm font-medium text-gray-700">Room Number</label>
-                    <input type="text" name="room_number" id="modal-room-number" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2">
+                    <input type="text" name="room_number" id="modal-room-number" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" readonly>
                 </div>
                 <div>
                     <label for="modal-room-type" class="block text-sm font-medium text-gray-700">Room Type</label>
-                    <input type="text" name="room_type" id="modal-room-type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2">
+                    <input type="text" name="room_type" id="modal-room-type" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm px-3 py-2" readonly>
                 </div>
                 <div>
                     <label for="modal-room-description" class="block text-sm font-medium text-gray-700">Description</label>
