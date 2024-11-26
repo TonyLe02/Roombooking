@@ -76,7 +76,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                         <div class="relative">
                             <button type="button" class="flex rounded-full text-sm text-gray-800 hover:text-gray-500 focus:outline-none" id="user-menu-button" aria-expanded="false" aria-haspopup="true" onclick="toggleDropdown()">
                                 <span class="sr-only">Open user menu</span>
-                                <i class="fas fa-user-circle text-xl"></i> <!-- Font Awesome Profile Icon -->
+                                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($_SESSION['username']); ?>&background=random&color=fff" alt="User Avatar" class="w-8 h-8 rounded-full">
                             </button>
 
                             <!-- Dropdown Menu -->
@@ -85,7 +85,7 @@ $current_page = basename($_SERVER['REQUEST_URI']); // Get the filename from the 
                                     <i class="fas fa-list mr-2 text-gray-400"></i>
                                     Your Booking
                                 </a>
-                                
+
                                 <a href="/Roombooking/public/logout.php" class="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center">
                                     <i class="fas fa-sign-out-alt mr-2 text-gray-400"></i>
                                     Logout
