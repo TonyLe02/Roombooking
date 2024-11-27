@@ -23,6 +23,20 @@ if (!$booking) {
 // Calculate the stay duration
 $check_in = new DateTime($booking['check_in']);
 $check_out = new DateTime($booking['check_out']);
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+    $userEmail = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    if ($userEmail) {
+        // Send confirmation email
+        require __DIR__ . '/../../send_email.php';
+        sendConfirmationEmail($userEmail, $booking);
+        echo "<p class='text-green-600 text-center'>Confirmation email sent to $userEmail.</p>";
+    } else {
+        echo "<p class='text-red-600 text-center'>Invalid email address.</p>";
+    }
+}
+
 ?>
 
 <!-- Confirmation form or content goes here -->
@@ -117,8 +131,28 @@ $check_out = new DateTime($booking['check_out']);
             </div>
         </div>
 
+        <!-- Email Input Form -->
+        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-8">
+            <form method="POST" action="">
+                <div class="mb-6 relative">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Enter your email:</label>
+                    <div class="flex items-center border border-gray-300 rounded-lg">
+                        <span class="px-3 text-gray-500">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <input type="email" id="email" name="email" class="w-full p-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="alice@example.com" required>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="inline-block rounded-lg bg-green-600 px-5 py-3 text-white font-semibold hover:bg-green-700 transition duration-300 ease-in-out shadow-md">
+                        Send Confirmation Email
+                    </button>
+                </div>
+            </form>
+        </div>
+
         <!-- Return Button -->
-        <div class="mt-8 text-center">
+        <div class="mt-8 left">
             <a href="/Roombooking/public/search.php"
                 class="inline-block rounded-lg bg-green-600 px-5 py-3 text-white font-semibold hover:bg-green-700 transition duration-300 ease-in-out shadow-md">
                 Return to Booking

@@ -1,5 +1,8 @@
 {
     "name": "roombooking/roombooking",
     "description": "Room Booking Application",
-    "require": {}
+    "require": {
+        "sendgrid/sendgrid": "^8.1",
+        "vlucas/phpdotenv": "^5.6"
+    }
   }

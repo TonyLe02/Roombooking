@@ -1,1 +1,7 @@
 node_modules/
+.vscode/settings.json
+installed.json
+vendor/
+composer.lock
+.env
+composer.json
