@@ -32,9 +32,9 @@ function sendConfirmationEmail($toEmail, $booking)
         .header { background-color: #4CAF50; padding: 20px; text-align: center; color: white; }
         .content { background-color: white; padding: 20px; margin: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
         .content p { margin: 10px 0; }
-        .button { display: inline-block; padding: 10px 20px; margin: 20px 0; background-color: #000000; color: white; text-decoration: none; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .button:hover { background-color: #333333; }
-        a { color: white; text-decoration: none; }
+        .button { display: inline-block; padding: 10px 20px; margin: 20px 0; background-color: white; color: black; text-decoration: none; border: 2px solid #000000; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .button:hover { background-color: #333333; color: white; }
+        a { color: black; text-decoration: none; }
         a:hover { color: white; }
     </style>
     </head>
