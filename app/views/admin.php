@@ -59,8 +59,8 @@
     </div>
 
     <!-- Modal -->
-    <div id="editModal" class="fixed inset-0 items-start justify-center pt-10 hidden z-50" style="backdrop-filter: blur(10px);">
-        <div class="relative mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+    <div id="editModal" class="fixed inset-0 items-start justify-center pt-12 hidden z-50" style="backdrop-filter: blur(10px);">
+        <div class="relative mx-auto p-5 border w-1/3 shadow-lg rounded-md bg-white">
             <div class="bg-gray-800 text-white rounded-t-md">
                 <div class="flex justify-between items-center p-4">
                     <h3 class="text-lg leading-6 font-medium">Edit Room</h3>
