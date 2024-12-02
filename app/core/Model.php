@@ -1,5 +1,5 @@
 <?php
-
+// TODO REMOVE LATER - FOR TESTING PURPOSES ONLY
 class Model {
     protected $conn; // Database connection
 

@@ -7,11 +7,14 @@
         </div>
     </header>
 
+    <!-- Main Content Section -->
     <div class="container mx-auto mt-10 p-5">
         <div class="overflow-x-auto rounded-lg shadow-lg">
+            <!-- Bookings Table -->
             <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
                 <thead class="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
                     <tr>
+                        <!-- Table Headers -->
                         <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Booking ID</th>
                         <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Room Number</th>
                         <th class="py-4 px-6 text-left text-sm font-semibold tracking-wider">Check-In Date</th>
@@ -22,6 +25,7 @@
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     <?php
+                    // Loop through each booking and display in the table
                     foreach ($bookings as $booking) {
                         echo "<tr class='hover:bg-gray-50 hover:shadow-sm transition-all duration-200'>";
                         echo "<td class='border px-6 py-3 text-sm text-gray-700'>" . htmlspecialchars($booking['booking_id']) . "</td>";
