@@ -45,15 +45,15 @@
         </section>
 
         <section class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center mt-10">
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+            <div class=" bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-3xl font-semibold mb-3 leading-snug">Quick Booking</h3>
                 <p class="text-gray-700">Find and reserve your room with just a few clicks.</p>
             </div>
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+            <div class=" bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-3xl font-semibold mb-3 leading-snug ">Flexible Options</h3>
                 <p class="text-gray-700">Choose from various room types for any occasion.</p>
             </div>
-            <div class="card bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300">
+            <div class=" bg-white shadow-lg rounded-lg p-6">
                 <h3 class="text-3xl font-semibold mb-3 leading-snug">Outstanding Service</h3>
                 <p class="text-gray-700">Experience our unparalleled customer service.</p>
             </div>

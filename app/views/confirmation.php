@@ -24,6 +24,23 @@ if (!$booking) {
 $check_in = new DateTime($booking['check_in']);
 $check_out = new DateTime($booking['check_out']);
 
+// Fetch the room type image URL from the database or configuration
+$roomTypeImage = '';
+switch ($booking['room_type']) {
+    case 'Single Room':
+        $roomTypeImage = '/Roombooking/public/images/Single.webp';
+        break;
+    case 'Double Room':
+        $roomTypeImage = '/Roombooking/public/images/Double.webp';
+        break;
+    case 'Junior Suite':
+        $roomTypeImage = '/Roombooking/public/images/Suite.webp';
+        break;
+    default:
+        $roomTypeImage = '/Roombooking/public/images/Single.webp';
+        break;
+}
+
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
     $userEmail = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
@@ -31,16 +48,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
         // Send confirmation email
         require __DIR__ . '/../../send_email.php';
         sendConfirmationEmail($userEmail, $booking);
-        echo "<p class='text-green-600 text-center'>Confirmation email sent to $userEmail.</p>";
-    } else {
-        echo "<p class='text-red-600 text-center'>Invalid email address.</p>";
+        $toastMessage = "Confirmation email sent to " . htmlspecialchars($userEmail) . ".";
     }
 }
 
+// Display toast message if set
+if (isset($toastMessage)) {
+    include __DIR__ . '/../../app/views/components/toast_success.php';
+}
 ?>
 
-<!-- Confirmation form or content goes here -->
-
+<!-- Confirmation form -->
 <body class="bg-green-50">
     <div class="container mx-auto mt-10">
         <h1 class="text-3xl font-bold mb-5 text-center text-green-700">Booking Confirmation</h1>
@@ -48,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
 
         <?php
         $currentMonth = new DateTime();
-        $formattedMonth = $currentMonth->format('F Y'); // Format as "Month Year" (e.g., "October 2023")
+        $formattedMonth = $currentMonth->format('F Y');
         ?>
 
         <!-- Calendar View -->
@@ -131,25 +149,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             </div>
         </div>
 
-        <!-- Email Input Form -->
-        <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 mt-8">
-            <form method="POST" action="">
-                <div class="mb-6 relative">
-                    <label for="email" class="block text-gray-700 font-semibold mb-2">Enter your email:</label>
-                    <div class="flex items-center border border-gray-300 rounded-lg">
-                        <span class="px-3 text-gray-500">
-                            <i class="fas fa-envelope"></i>
-                        </span>
-                        <input type="email" id="email" name="email" class="w-full p-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="alice@example.com" required>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="inline-block rounded-lg bg-green-600 px-5 py-3 text-white font-semibold hover:bg-green-700 transition duration-300 ease-in-out shadow-md">
-                        Send Confirmation Email
-                    </button>
-                </div>
-            </form>
+        <!-- Dynamic Room Image -->
+        <div class="flex justify-center mb-6">
+            <img src="<?php echo $roomTypeImage; ?>" alt="Room Image" class="rounded-lg shadow-lg w-full">
         </div>
+
+        <!-- Include the email form component -->
+        <?php include __DIR__ . '/../../app/views/components/email_form.php'; ?>
 
         <!-- Return Button -->
         <div class="mt-8 left">
