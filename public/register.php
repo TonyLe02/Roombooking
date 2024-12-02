@@ -2,6 +2,9 @@
 // Include the database connection script
 include __DIR__ . '/../app/core/db_connect.php';
 
+// Include the User model
+include __DIR__ . '/../app/models/User.php';
+
 // Initialize error variable
 $error = "";
 
@@ -29,14 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($stmt->num_rows > 0) {
                 $error = "Username already exists. Please choose another.";
             } else {
-                // Insert the new user
-                $stmt = $conn->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, ?)");
-                $stmt->bind_param('sss', $username, $hashedPassword, $role);
-                $stmt->execute();
+                // Instantiate the User model
+                $user = new User($conn);
 
-                // Redirect to login page after successful registration
-                header('Location: /Roombooking/public/login.php');
-                exit;
+                // Set the properties
+                $user->username = $username;
+                $user->password = $hashedPassword;
+                $user->role = $role;
+
+                // Create the user
+                if ($user->create()) {
+
+                    $toastMessage = "Your booking account has been successfully created. You can now log in and start booking!";
+                } else {
+                    $error = "Error: Could not create user.";
+                }
             }
         } catch (Exception $e) {
             $error = "Error: " . $e->getMessage();

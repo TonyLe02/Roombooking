@@ -1,3 +1,8 @@
+<?php
+if (isset($toastMessage)) {
+    include __DIR__ . '/../../app/views/components/toast_success.php';
+}
+?>
 <!-- Register form or content goes here -->
 <div class="container mx-auto max-w-md p-4">
     <h1 class="text-3xl font-bold text-gray-900">Register</h1>
